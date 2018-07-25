@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { AuthGuardService } from './services/guard/auth-guard.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { AuthGuardService } from './services/guard/auth-guard.service';
     declarations: [
         SignupComponent,
         FooterComponent,
-        HeaderComponent
+        HeaderComponent,
+        NotFoundComponent
     ],
     exports: [
         RouterModule,
