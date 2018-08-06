@@ -19,4 +19,11 @@ export class HeaderComponent implements OnInit {
     this.authenticationService.Authorize();
   }
 
+  public logout(): void {
+    this.authenticationService.Logoff();
+  }
+
+  public isAuthorized(): boolean {
+      return this.authenticationService.isAuthorized();
+  }
 }

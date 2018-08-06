@@ -33,11 +33,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cart</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="!isAuthorized()" class="nav-item">
                     <a class="nav-link" href="#" (click)="login()">Sign in</a>
                 </li>
-                <li class="nav-item">
+                <li *ngIf="!isAuthorized()" class="nav-item">
                     <a class="nav-link" href="#">Sign up</a>
+                </li>
+                <li *ngIf="isAuthorized()" class="nav-item">
+                    <a class="nav-link" href="#" (click)="logout()">Log out</a>
                 </li>
             </ul>
         </div>
