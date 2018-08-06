@@ -40,6 +40,9 @@
                     <a class="nav-link" href="#">Sign up</a>
                 </li>
                 <li *ngIf="isAuthorized()" class="nav-item">
+                        <a class="nav-link" href="#" [routerLink]="['/member/profile']">Profile</a>
+                    </li>
+                <li *ngIf="isAuthorized()" class="nav-item">
                     <a class="nav-link" href="#" (click)="logout()">Log out</a>
                 </li>
             </ul>
