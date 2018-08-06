@@ -34,15 +34,10 @@ export class ConfigService {
     constructor(private http: HttpClient) {
     }
 
-    private test: AppConfig;
-
     public load(): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
-            this.http.get('assets/appsettings.json')
-            .pipe((error: any): any => {
-                reject(true);
-                return Observable.throw('Server error');
-            }).subscribe((envResponse: any) => {
+            return this.http.get('assets/appsettings.json')
+            .subscribe((envResponse: any) => {
                 const t: AppConfig = new AppConfig();
                 // Modify envResponse here if needed (e.g. to ajust parameters for https,...)
 
