@@ -1,32 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthValidationService } from './auth-validation.service';
 import { Router } from '@angular/router';
 import { JwtKeys } from '../../../shared/models/jwt-keys';
 import { AuthConfigurationService } from '../config/auth-config.service';
 import { StorageService } from '../storage/storage.service';
 import { isPlatformBrowser } from '@angular/common';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthenticationService {
 
     public HasAdminRole: boolean;
     public HasUserAdminRole: boolean;
-
-    private _isAuthorized: boolean;
-    private jwtKeys: JwtKeys;
+    public _isAuthorized: boolean;
+    public jwtKeys: JwtKeys;
 
     constructor
-    (
+        (
         private http: HttpClient,
         private authConfigService: AuthConfigurationService,
         private router: Router,
         private authValidationService: AuthValidationService,
         private storageService: StorageService
-    ) {
+        ) {
         if (storageService.retrieve('_isAuthorized') !== '') {
             this.HasAdminRole = storageService.retrieve('HasAdminRole');
             this._isAuthorized = storageService.retrieve('_isAuthorized');
@@ -45,30 +44,30 @@ export class AuthenticationService {
         return false;
     }
 
-    public GetToken(): any {
-        return this.storageService.retrieve('authorizationData');
+    public GetToken(): Observable<string> {
+        return of(this.storageService.retrieve('jwt'));
     }
 
     public ResetAuthorizationData(): void {
-        this.storageService.store('authorizationData', '');
+        this.storageService.store('jwt', '');
         this.storageService.store('authorizationDataIdToken', '');
 
         this._isAuthorized = false;
         this.HasAdminRole = false;
         this.storageService.store('HasAdminRole', false);
-                this.storageService.store('HasUserAdminRole', false);
+        this.storageService.store('HasUserAdminRole', false);
         this.storageService.store('_isAuthorized', false);
     }
 
     public SetAuthorizationData(token: any, id_token: any): void {
-        if (this.storageService.retrieve('authorizationData') !== '') {
-            this.storageService.store('authorizationData', '');
+        if (this.storageService.retrieve('jwt') !== '') {
+            this.storageService.store('jwt', '');
         }
 
         console.log(token);
         console.log(id_token);
         console.log('storing to storage, getting the roles');
-        this.storageService.store('authorizationData', token);
+        this.storageService.store('jwt', token);
         this.storageService.store('authorizationDataIdToken', id_token);
         this._isAuthorized = true;
         this.storageService.store('_isAuthorized', true);
@@ -100,7 +99,7 @@ export class AuthenticationService {
             'nonce=' + encodeURI(nonce) + '&' +
             'state=' + encodeURI(state);
 
-            window.location.href = url;
+        window.location.href = url;
     }
 
     public AuthorizedCallback(): void {
@@ -173,13 +172,9 @@ export class AuthenticationService {
 
                     if (authResponseIsValid) {
                         this.SetAuthorizationData(token, id_token);
-                        console.log(this.storageService.retrieve('authorizationData'));
-
-                        // router navigate to DataEventRecordsList
-                        // this._router.navigate(['/dataeventrecords/list']);
+                        this.router.navigate(['']);
                     } else {
                         this.ResetAuthorizationData();
-                        // this._router.navigate(['/Unauthorized']);
                     }
                 });
         }

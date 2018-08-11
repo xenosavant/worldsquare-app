@@ -17,6 +17,6 @@ export class PassportService {
     ) { }
 
     public VerifyYoti(request: RequestYoti): Observable<ResponseYoti> {
-        return this.httpService.post(this.baseUrl + '/api/yoti', { request }, null);
+        return this.httpService.post(this.baseUrl + '/api/yoti', request, null);
     }
 }

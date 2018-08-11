@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map, mergeMap} from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../authentication/authentication.service';
 
@@ -20,13 +21,15 @@ export class HttpClientService {
       */
       public get<T>(endpoint: string, params: HttpParams): Observable<T> {
         return this.authenticationService.GetToken()
-          .map((jwtToken: string) => ({
-            headers: new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`),
+        .pipe(
+          map((jwt: string) => ({
+            headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
             params: params
-          }))
-          .mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          })),
+          mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
             this.http.get<T>(endpoint, options)
-          );
+          )
+        );
       }
 
       /**
@@ -37,13 +40,15 @@ export class HttpClientService {
       */
       public post<T>(endpoint: string, body: any, params: HttpParams): Observable<T> {
         return this.authenticationService.GetToken()
-          .map((jwtToken: string) => ({
-            headers: new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`),
+        .pipe(
+          map((jwt: string) => ({
+            headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
             params: params
-          }))
-          .mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          })),
+          mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
             this.http.post<T>(endpoint, body, options)
-          );
+          )
+        );
       }
 
       /**
@@ -54,13 +59,15 @@ export class HttpClientService {
       */
       public put<T>(endpoint: string, body: any, params: HttpParams): Observable<T> {
         return this.authenticationService.GetToken()
-          .map((jwtToken: string) => ({
-            headers: new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`),
+        .pipe(
+          map((jwt: string) => ({
+            headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
             params: params
-          }))
-          .mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          })),
+          mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
             this.http.put<T>(endpoint, body, options)
-          );
+          )
+        );
       }
 
       /**
@@ -70,12 +77,14 @@ export class HttpClientService {
       */
       public delete<T>(endpoint: string, params: HttpParams): Observable<T> {
         return this.authenticationService.GetToken()
-          .map((jwtToken: string) => ({
-            headers: new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`),
+        .pipe(
+          map((jwt: string) => ({
+            headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
             params: params
-          }))
-          .mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          })),
+          mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
             this.http.delete<T>(endpoint, options)
-          );
+          )
+        );
       }
 }

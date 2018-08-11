@@ -1,9 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { APP_CONFIG } from '../../core/services/config/config.service';
 import { ActivatedRoute } from '@angular/router';
 import { PassportService } from '../../shared/services/passport/passport.service';
 import { RequestYoti } from '../../shared/models/passport/request-yoti.model';
 import { ResponseYoti } from '../../shared/models/passport/response-yoti.model';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-passport',
@@ -13,10 +14,8 @@ import { ResponseYoti } from '../../shared/models/passport/response-yoti.model';
 export class PassportComponent implements OnInit {
 
     public win: any = window;
-    public ref: ChangeDetectorRef;
     public yotiApplicationId: string;
     public yotiScenarioId: string;
-    public token: string;
 
     public isYotiVerified: boolean;
 
@@ -27,28 +26,29 @@ export class PassportComponent implements OnInit {
 
     public ngOnInit(): void {
 
-        this.token = this.route.snapshot.queryParams.token;
-        this.verifyYoti(this.token);
+        this.route.queryParams.subscribe((params: any) => {
+
+            if (params['token'] !== undefined) {
+                this.verifyYoti(params['token']);
+            }
+        });
 
         this.yotiApplicationId = APP_CONFIG.YotiSettings.AppId;
         this.yotiScenarioId = APP_CONFIG.YotiSettings.ScenarioId;
 
         setTimeout(() => {
             this.win._ybg.init();
-            this.ref.detectChanges();
         }, 300);
     }
 
     public verifyYoti(token: string): void {
-        if (token !== undefined) {
-            const model: RequestYoti = {
-                token: token
-            };
+        const model: RequestYoti = {
+            token: token
+        };
 
-            this.passportService.VerifyYoti(model).subscribe(
-                (data: ResponseYoti) => {
-                    this.isYotiVerified = data.isVerified;
-                });
-        }
+        this.passportService.VerifyYoti(model).subscribe(
+            (data: ResponseYoti) => {
+                this.isYotiVerified = data.isVerified;
+            });
     }
 }
