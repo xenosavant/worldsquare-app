@@ -7,23 +7,30 @@
             <div class="row">
                 <div class="col-12">
                     <h2>Level 1 (KYC nationality)</h2>
-                    <p>Scan the Yoti QR code to continue</p>
-                    <div>
-                        <span [attr.data-yoti-application-id]="yotiApplicationId" [attr.data-yoti-scenario-id]="yotiScenarioId" data-yoti-type="instant">
-                            Use Yoti
-                        </span>
+                    <div *ngIf="verificationLevel === 1;else levelOneVerified">
+                        <p>Scan the Yoti QR code to continue</p>
+                        <div>
+                            <span [attr.data-yoti-application-id]="yotiApplicationId" [attr.data-yoti-scenario-id]="yotiScenarioId" data-yoti-type="instant">
+                                Use Yoti
+                            </span>
+                        </div>
                     </div>
-
+                    <ng-template #levelOneVerified>
+                        Already Level 1 verified
+                    </ng-template>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <h2>Level 2 (KYC Residence)</h2>
-                    Please verify yourself with uploading utility bill:
-
+                    <div class="col-12">
+                        <h2>Level 2 (KYC Residence)</h2>
+                        <div *ngIf="verificationLevel >= 1 && verificationLevel < 3;else levelTwoVerified">
+                            Please verify yourself with uploading utility bill:
+                        </div>
+                        <ng-template #levelTwoVerified>
+                            Already Level 2 verified
+                        </ng-template>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
-
 </div>

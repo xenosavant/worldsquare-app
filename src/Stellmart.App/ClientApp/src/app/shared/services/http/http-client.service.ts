@@ -19,7 +19,7 @@ export class HttpClientService {
        * @param endpoint The endpoint you want to call;
        * @param params The params you want to pass in
       */
-      public get<T>(endpoint: string, params: HttpParams): Observable<T> {
+      public get<T>(endpoint: string, params?: HttpParams): Observable<T> {
         return this.authenticationService.GetToken()
         .pipe(
           map((jwt: string) => ({
@@ -38,7 +38,7 @@ export class HttpClientService {
        * @param body The body for the post request
        * @param params The params you want to pass in
       */
-      public post<T>(endpoint: string, body: any, params: HttpParams): Observable<T> {
+      public post<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
         return this.authenticationService.GetToken()
         .pipe(
           map((jwt: string) => ({
@@ -57,7 +57,7 @@ export class HttpClientService {
        * @param body The body for the post request
        * @param params The params you want to pass in
       */
-      public put<T>(endpoint: string, body: any, params: HttpParams): Observable<T> {
+      public put<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
         return this.authenticationService.GetToken()
         .pipe(
           map((jwt: string) => ({
@@ -75,7 +75,7 @@ export class HttpClientService {
        * @param endpoint The endpoint you want to call
        * @param params The params you want to pass in
       */
-      public delete<T>(endpoint: string, params: HttpParams): Observable<T> {
+      public delete<T>(endpoint: string, params?: HttpParams): Observable<T> {
         return this.authenticationService.GetToken()
         .pipe(
           map((jwt: string) => ({

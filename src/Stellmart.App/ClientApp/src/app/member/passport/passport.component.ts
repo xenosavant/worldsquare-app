@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { APP_CONFIG } from '../../core/services/config/config.service';
 import { ActivatedRoute } from '@angular/router';
 import { PassportService } from '../../shared/services/passport/passport.service';
-import { RequestYoti } from '../../shared/models/passport/request-yoti.model';
-import { ResponseYoti } from '../../shared/models/passport/response-yoti.model';
-import { filter } from 'rxjs/operators';
+import { YotiRequest } from '../../shared/models/passport/yoti-request.model';
+import { YotiResponse } from '../../shared/models/passport/yoti-response.model';
+import { APP_CONFIG } from '../../shared/services/config/config.service';
+import { UserService } from '../../shared/services/user/user.service';
+import { UserResponse } from '../../shared/models/user/user-response.model';
+import { VerificationLevelEnum } from '../../shared/enums/verification-level.enum';
 
 @Component({
     selector: 'app-passport',
@@ -18,16 +20,19 @@ export class PassportComponent implements OnInit {
     public yotiScenarioId: string;
 
     public isYotiVerified: boolean;
+    public verificationLevel: number;
 
     constructor(
         private route: ActivatedRoute,
-        private passportService: PassportService
+        private passportService: PassportService,
+        private userService: UserService
     ) { }
 
     public ngOnInit(): void {
 
-        this.route.queryParams.subscribe((params: any) => {
+        this.getCurrentLoggedUser();
 
+        this.route.queryParams.subscribe((params: any) => {
             if (params['token'] !== undefined) {
                 this.verifyYoti(params['token']);
             }
@@ -42,13 +47,20 @@ export class PassportComponent implements OnInit {
     }
 
     public verifyYoti(token: string): void {
-        const model: RequestYoti = {
+        const model: YotiRequest = {
             token: token
         };
 
-        this.passportService.VerifyYoti(model).subscribe(
-            (data: ResponseYoti) => {
+        this.passportService.verifyYoti(model).subscribe(
+            (data: YotiResponse) => {
                 this.isYotiVerified = data.isVerified;
+            });
+    }
+
+    public getCurrentLoggedUser(): void {
+        this.userService.getCurrentLoggedUser().subscribe(
+            (data: UserResponse) => {
+                this.verificationLevel = data.verificationLevelId;
             });
     }
 }
