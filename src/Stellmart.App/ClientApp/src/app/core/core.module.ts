@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '../../../node_modules/@angular/router';
 import { CoreRoutingModule } from './core-routing.module';
@@ -11,12 +11,14 @@ import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         CoreRoutingModule,
         AngularFontAwesomeModule,
+        ReactiveFormsModule,
         HttpClientModule,
         SharedModule
     ],

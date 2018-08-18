@@ -1,3 +1,30 @@
-<p>
-  signup works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 align-self-center">
+      <form [formGroup]="form" (ngSubmit)="register()">
+        <h4>Create a new account</h4>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input class="form-control" name="email" formControlName="email" placeholder="Email Address*" />
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'email','required')" errorMessage="Field is required"></app-field-error>
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'email','email')" errorMessage="Please insert correct email"></app-field-error>
+        </div>
+        <div class="form-group">
+          <label for="emailConfirm">Email Address Confirm</label>
+          <input class="form-control" name="emailConfirm" formControlName="emailConfirm" placeholder="Email Address Confirm*" />
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'emailConfirm','required')" errorMessage="Field is required"></app-field-error>
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'emailConfirm','email')" errorMessage="Please insert correct email"></app-field-error>
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'emailConfirm','matchOther')" errorMessage="Emails do not match"></app-field-error>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" formControlName="password" placeholder="Password*" />
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'password','required')" errorMessage="Field is required"></app-field-error>
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'password','invalidPassword')" errorMessage="Password should be minimum 8 characters and contain at least one capital letter, small letter, digit and symbol characters"></app-field-error>
+        </div>
+        <button type="submit" class="btn btn-eg">Create Account</button>
+      </form>
+
+    </div>
+  </div>
+</div>
