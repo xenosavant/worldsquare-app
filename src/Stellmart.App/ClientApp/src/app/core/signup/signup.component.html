@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 align-self-center">
-      <form [formGroup]="form" (ngSubmit)="register()">
+      <form [formGroup]="form" (ngSubmit)="signup()">
         <h4>Create a new account</h4>
         <div class="form-group">
           <label for="email">Email Address</label>
@@ -22,6 +22,18 @@
           <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'password','required')" errorMessage="Field is required"></app-field-error>
           <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'password','invalidPassword')" errorMessage="Password should be minimum 8 characters and contain at least one capital letter, small letter, digit and symbol characters"></app-field-error>
         </div>
+        <div class="form-group">
+          <label for="securityAnswerFirst">Security question 1</label>
+          <div *ngIf="securityQuestions"><app-dropdown [collection]="securityQuestions"></app-dropdown></div>
+          <input class="form-control" name="securityAnswerFirst" formControlName="securityAnswerFirst" placeholder="Security answer 1*" />
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'securityAnswerFirst','required')" errorMessage="Field is required"></app-field-error>
+        </div>
+        <div class="form-group">
+          <label for="securityAnswerSecond">Security question 2</label>
+          <div *ngIf="securityQuestions"><app-dropdown [collection]="securityQuestions"></app-dropdown></div>
+          <input class="form-control" name="securityAnswerSecond" formControlName="securityAnswerSecond" placeholder="Security answer 2*" />
+          <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'securityAnswerSecond','required')" errorMessage="Field is required"></app-field-error>
+        </div>      
         <button type="submit" class="btn btn-eg">Create Account</button>
       </form>
 

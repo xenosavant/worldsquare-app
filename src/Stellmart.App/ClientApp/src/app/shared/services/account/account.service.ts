@@ -4,6 +4,7 @@ import { HttpClientService } from '../http/http-client.service';
 import { SignupRequest } from '../../models/account/signup-request.model';
 import { SignupResponse } from '../../models/account/signup-response.model';
 import { Observable } from 'rxjs';
+import { SecurityQuestionsResponse } from '../../models/account/security-questions-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,11 @@ export class AccountService {
     private httpService: HttpClientService
   ) { }
 
-  public register(request: SignupRequest): Observable<SignupResponse> {
-    return this.httpService.post(this.baseUrl + '/api/yoti', request);
+  public signup(request: SignupRequest): Observable<SignupResponse> {
+    return this.httpService.post(this.baseUrl + '/api/account', request);
+  }
+
+  public getSecurityQuestions(): Observable<SecurityQuestionsResponse[]> {
+    return this.httpService.get(this.baseUrl + '/api/account/securityquestions');
   }
 }

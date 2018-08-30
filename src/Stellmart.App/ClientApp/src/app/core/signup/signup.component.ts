@@ -6,6 +6,7 @@ import { SignupResponse } from '../../shared/models/account/signup-response.mode
 import { SignupRequest } from '../../shared/models/account/signup-request.model';
 import { MatchOtherValidator } from '../../shared/validators/match-other.validator';
 import { PasswordPatternValidator } from '../../shared/validators/password-pattern.validator';
+import { SecurityQuestionsResponse } from '../../shared/models/account/security-questions-response.model';
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +14,8 @@ import { PasswordPatternValidator } from '../../shared/validators/password-patte
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
+
+  public securityQuestions: string[];
 
   private form: FormGroup;
 
@@ -25,28 +28,40 @@ export class SignupComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.getSecurityQuestions();
+
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       emailConfirm: ['', [Validators.required, Validators.email, MatchOtherValidator.validate('email')]],
-      password: ['', [Validators.required, PasswordPatternValidator.validate()]]
+      password: ['', [Validators.required, PasswordPatternValidator.validate()]],
+      securityAnswerFirst: ['', Validators.required],
+      securityAnswerSecond: ['', Validators.required]
     });
   }
 
-  public register(): void {
+  public signup(): void {
     const request: SignupRequest = {
       email: '',
       password: '',
-      securityStrings: []
+      securityAnswerFirst: '',
+      securityAnswerSecond: ''
     };
 
     if (this.form.valid) {
 
-      this.accountService.register(request)
+      this.accountService.signup(request)
         .subscribe((result: SignupResponse) => {
 
         });
     } else {
       this.formValidationService.validateAllFormFields(this.form);
     }
+  }
+
+  public getSecurityQuestions(): void {
+    this.accountService.getSecurityQuestions()
+      .subscribe((data: SecurityQuestionsResponse[]) => {
+        this.securityQuestions = data.map((x: SecurityQuestionsResponse) => x.question);
+    });
   }
 }
