@@ -6,7 +6,6 @@ import { YotiResponse } from '../../shared/models/passport/yoti-response.model';
 import { APP_CONFIG } from '../../shared/services/config/config.service';
 import { UserService } from '../../shared/services/user/user.service';
 import { UserResponse } from '../../shared/models/user/user-response.model';
-import { VerificationLevelEnum } from '../../shared/enums/verification-level.enum';
 
 @Component({
     selector: 'app-passport',
