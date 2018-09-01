@@ -1,3 +1,5 @@
-<select class="form-control" [(ngModel)]="selected" (ngModelChange)="select($event)">
-  <option *ngFor="let x of collection" [value]="x">{{x}}</option>
-</select>
+<div [formGroup]="parentForm">
+  <select class="form-control" [(ngModel)]="selected" (ngModelChange)="select($event)" formControlName="age">
+    <option *ngFor="let x of collection" [value]="x">{{x}}</option>
+  </select>
+</div>

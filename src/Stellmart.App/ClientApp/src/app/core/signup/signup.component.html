@@ -24,19 +24,25 @@
         </div>
         <div class="form-group">
           <label for="securityAnswerFirst">Security question 1</label>
-          <div *ngIf="securityQuestions"><app-dropdown [collection]="securityQuestions"></app-dropdown></div>
-          <input class="form-control" name="securityAnswerFirst" formControlName="securityAnswerFirst" placeholder="Security answer 1*" />
+          <div *ngIf="securityQuestions">
+            <app-dropdown [collection]="securityQuestions" [parentForm]="form"  [controlName]="securityQuestionsFirst" (dropdownSelected)="setIntervalFilter($event)"></app-dropdown>
+          </div>
+          <input class="form-control" name="securityAnswerFirst" formControlName="securityAnswerFirst" placeholder="Security answer 1*"
+          />
           <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'securityAnswerFirst','required')" errorMessage="Field is required"></app-field-error>
         </div>
         <div class="form-group">
           <label for="securityAnswerSecond">Security question 2</label>
-          <div *ngIf="securityQuestions"><app-dropdown [collection]="securityQuestions"></app-dropdown></div>
-          <input class="form-control" name="securityAnswerSecond" formControlName="securityAnswerSecond" placeholder="Security answer 2*" />
+          <div *ngIf="securityQuestions">
+            <app-dropdown [collection]="securityQuestions" [parentForm]="form"  [controlName]="securityQuestionsSecond" (dropdownSelected)="setIntervalFilter2($event)"></app-dropdown>
+          </div>
+          <input class="form-control" name="securityAnswerSecond" formControlName="securityAnswerSecond" placeholder="Security answer 2*"
+          />
           <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'securityAnswerSecond','required')" errorMessage="Field is required"></app-field-error>
-        </div>      
+        </div>
         <button type="submit" class="btn btn-eg">Create Account</button>
       </form>
-
+      {{form.value | json}}
     </div>
   </div>
 </div>

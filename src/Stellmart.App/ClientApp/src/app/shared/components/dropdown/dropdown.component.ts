@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
@@ -9,15 +10,23 @@ import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 export class DropdownComponent implements OnInit {
 
     @Input()
+    public parentForm: FormGroup;
+
+    @Input()
     public collection: string[];
 
     @Input()
     public selected: string;
 
+    @Input()
+    public controlName: string;
+
     @Output()
     public dropdownSelected: EventEmitter<any> = new EventEmitter<any>();
 
     public ngOnInit(): void {
+      console.log('kurec'); console.log(this.parentForm);
+      this.parentForm.addControl('age', new FormControl('', Validators.required));
       console.log(this.collection);
     }
 

@@ -1,6 +1,6 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '../../../node_modules/@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular/forms';
 
 import { ConfigService } from './services/config/config.service';
 import { FieldErrorComponent } from './components/field-error/field-error.component';
@@ -18,7 +18,8 @@ export function loadConfigService(configService: ConfigService): Function {
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         FieldErrorComponent,

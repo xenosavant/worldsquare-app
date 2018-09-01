@@ -43,8 +43,8 @@ export class SignupComponent implements OnInit {
     const request: SignupRequest = {
       email: '',
       password: '',
-      securityAnswerFirst: '',
-      securityAnswerSecond: ''
+      securityQuestions: [''],
+      securityAnswers: ['']
     };
 
     if (this.form.valid) {
@@ -63,5 +63,13 @@ export class SignupComponent implements OnInit {
       .subscribe((data: SecurityQuestionsResponse[]) => {
         this.securityQuestions = data.map((x: SecurityQuestionsResponse) => x.question);
     });
+  }
+
+  public setIntervalFilter(): void {
+
+  }
+
+  public setIntervalFilter2(): void {
+
   }
 }

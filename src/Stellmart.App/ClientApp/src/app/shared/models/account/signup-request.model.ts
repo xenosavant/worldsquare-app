@@ -1,6 +1,6 @@
 export interface SignupRequest {
     email: string;
     password: string;
-    securityAnswerFirst: string;
-    securityAnswerSecond: string;
+    securityQuestions: string[];
+    securityAnswers: string[];
 }
