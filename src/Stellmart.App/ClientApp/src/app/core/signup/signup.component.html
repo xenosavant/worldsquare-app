@@ -24,8 +24,8 @@
         </div>
         <div class="form-group">
           <label for="securityAnswerFirst">Security question 1</label>
-          <div *ngIf="securityQuestions">
-            <app-dropdown [collection]="securityQuestions" [parentForm]="form"  [controlName]="securityQuestionsFirst" (dropdownSelected)="setIntervalFilter($event)"></app-dropdown>
+          <div *ngIf="securityQuestionsResponse">
+            <app-dropdown [collection]="securityQuestionsResponse" [parentForm]="form" [controlName]="'securityQuestionsFirst'" (dropdownSelected)="selectQuestion('securityQuestionsFirst', $event)"></app-dropdown>
           </div>
           <input class="form-control" name="securityAnswerFirst" formControlName="securityAnswerFirst" placeholder="Security answer 1*"
           />
@@ -33,8 +33,8 @@
         </div>
         <div class="form-group">
           <label for="securityAnswerSecond">Security question 2</label>
-          <div *ngIf="securityQuestions">
-            <app-dropdown [collection]="securityQuestions" [parentForm]="form"  [controlName]="securityQuestionsSecond" (dropdownSelected)="setIntervalFilter2($event)"></app-dropdown>
+          <div *ngIf="securityQuestionsResponse">
+            <app-dropdown [collection]="securityQuestionsResponse" [parentForm]="form" [controlName]="'securityQuestionsSecond'" (dropdownSelected)="selectQuestion('securityQuestionsSecond', $event)"></app-dropdown>
           </div>
           <input class="form-control" name="securityAnswerSecond" formControlName="securityAnswerSecond" placeholder="Security answer 2*"
           />
@@ -43,6 +43,7 @@
         <button type="submit" class="btn btn-eg">Create Account</button>
       </form>
       {{form.value | json}}
+      {{securityQuestions | json}}
     </div>
   </div>
 </div>

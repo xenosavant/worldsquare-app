@@ -45,7 +45,6 @@ export class ConfigService {
                 .subscribe((envResponse: any) => {
                     const t: AppConfig = new AppConfig();
                     // Modify envResponse here if needed (e.g. to ajust parameters for https,...)
-                    console.log(JSON.stringify(envResponse, null, 4));
 
                     APP_CONFIG = Object.assign(t, envResponse);
                     resolve(true);

@@ -25,12 +25,16 @@ export class DropdownComponent implements OnInit {
     public dropdownSelected: EventEmitter<any> = new EventEmitter<any>();
 
     public ngOnInit(): void {
-      console.log('kurec'); console.log(this.parentForm);
-      this.parentForm.addControl('age', new FormControl('', Validators.required));
-      console.log(this.collection);
+      // console.log('name'); console.log(this.controlName);
+      // console.log('kurec'); console.log(this.parentForm);
+      this.parentForm.addControl(this.controlName, new FormControl('', Validators.required));
+      // console.log(this.collection);
     }
 
-    public select(selection: any): void {
-        this.dropdownSelected.emit(selection);
+    public select($event: any): void {
+     console.log($event.target.value);
+
+     this.dropdownSelected.emit($event);
+        //this.dropdownSelected.emit({ event: 'cipa', ui: guza });
     }
 }

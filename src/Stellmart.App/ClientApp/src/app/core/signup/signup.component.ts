@@ -15,7 +15,10 @@ import { SecurityQuestionsResponse } from '../../shared/models/account/security-
 })
 export class SignupComponent implements OnInit {
 
-  public securityQuestions: string[];
+  public securityQuestions: string [];
+  public securityQuestionsResponse: string [];
+  public securityQuestionsKeyPair: { [key: string]: string } = {};
+  // this.kmet = Object.keys(this.resultSet).map(it => this.resultSet[it]);
 
   private form: FormGroup;
 
@@ -61,15 +64,24 @@ export class SignupComponent implements OnInit {
   public getSecurityQuestions(): void {
     this.accountService.getSecurityQuestions()
       .subscribe((data: SecurityQuestionsResponse[]) => {
-        this.securityQuestions = data.map((x: SecurityQuestionsResponse) => x.question);
+        this.securityQuestionsResponse = data.map((x: SecurityQuestionsResponse) => x.question);
     });
   }
 
-  public setIntervalFilter(): void {
+  // public selectQuestion(a: any, $event: any): void {
+  //   console.log('k: '); console.log($event);
 
-  }
+  //   console.log('kurec novak se zove: ' + a + ' in ' + $event.target.value);
+  // }
 
-  public setIntervalFilter2(): void {
+  public selectQuestion(which: string, $event: any): void {
+    // known Angular bug for null in Select element
+    if ($event.target.value !== 'null') {
+      this.securityQuestionsKeyPair[which] = $event.target.value;
+    } else {
+      this.securityQuestionsKeyPair[which] = null;
+    }
 
+    this.securityQuestions = Object.keys(this.securityQuestionsKeyPair).map( (question: string) => this.securityQuestionsKeyPair[question]);
   }
 }
