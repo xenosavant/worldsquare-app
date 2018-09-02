@@ -25,25 +25,24 @@
         <div class="form-group">
           <label for="securityAnswerFirst">Security question 1</label>
           <div *ngIf="securityQuestionsResponse">
-            <app-dropdown [collection]="securityQuestionsResponse" [parentForm]="form" [controlName]="'securityQuestionsFirst'" (dropdownSelected)="selectQuestion('securityQuestionsFirst', $event)"></app-dropdown>
+            <app-dropdown [collection]="securityQuestionsResponse" [parentForm]="form" [controlName]="'securityQuestionsFirst'" (dropdownSelected)="populateQuestions('securityQuestionsFirst', $event)"></app-dropdown>
           </div>
-          <input class="form-control" name="securityAnswerFirst" formControlName="securityAnswerFirst" placeholder="Security answer 1*"
+          <input class="form-control" name="securityAnswerFirst" formControlName="securityAnswerFirst" placeholder="Security answer 1*" (input)="populateAnswers('securityAnswerFirst',$event)"
           />
           <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'securityAnswerFirst','required')" errorMessage="Field is required"></app-field-error>
         </div>
         <div class="form-group">
           <label for="securityAnswerSecond">Security question 2</label>
           <div *ngIf="securityQuestionsResponse">
-            <app-dropdown [collection]="securityQuestionsResponse" [parentForm]="form" [controlName]="'securityQuestionsSecond'" (dropdownSelected)="selectQuestion('securityQuestionsSecond', $event)"></app-dropdown>
+            <app-dropdown [collection]="securityQuestionsResponse" [parentForm]="form" [controlName]="'securityQuestionsSecond'" (dropdownSelected)="populateQuestions('securityQuestionsSecond', $event)"></app-dropdown>
           </div>
-          <input class="form-control" name="securityAnswerSecond" formControlName="securityAnswerSecond" placeholder="Security answer 2*"
+          <input class="form-control" name="securityAnswerSecond" formControlName="securityAnswerSecond" placeholder="Security answer 2*" (input)="populateAnswers('securityAnswerSecond',$event)"
           />
           <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'securityAnswerSecond','required')" errorMessage="Field is required"></app-field-error>
         </div>
         <button type="submit" class="btn btn-eg">Create Account</button>
       </form>
-      {{form.value | json}}
-      {{securityQuestions | json}}
+      {{form.value | json}} {{securityQuestionsRequest | json}} {{securityAnswersRequest | json}}
     </div>
   </div>
 </div>

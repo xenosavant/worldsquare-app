@@ -15,10 +15,12 @@ import { SecurityQuestionsResponse } from '../../shared/models/account/security-
 })
 export class SignupComponent implements OnInit {
 
-  public securityQuestions: string [];
+  public securityQuestionsRequest: string [];
   public securityQuestionsResponse: string [];
   public securityQuestionsKeyPair: { [key: string]: string } = {};
-  // this.kmet = Object.keys(this.resultSet).map(it => this.resultSet[it]);
+
+  public securityAnswersRequest: string [];
+  public securityAnswersKeyPair: { [key: string]: string } = {};
 
   private form: FormGroup;
 
@@ -43,14 +45,14 @@ export class SignupComponent implements OnInit {
   }
 
   public signup(): void {
-    const request: SignupRequest = {
-      email: '',
-      password: '',
-      securityQuestions: [''],
-      securityAnswers: ['']
-    };
-
     if (this.form.valid) {
+
+      const request: SignupRequest = {
+        email: this.form.value.email,
+        password: this.form.value.password,
+        securityQuestions: this.securityQuestionsRequest,
+        securityAnswers: this.securityAnswersRequest
+      };
 
       this.accountService.signup(request)
         .subscribe((result: SignupResponse) => {
@@ -68,13 +70,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  // public selectQuestion(a: any, $event: any): void {
-  //   console.log('k: '); console.log($event);
-
-  //   console.log('kurec novak se zove: ' + a + ' in ' + $event.target.value);
-  // }
-
-  public selectQuestion(which: string, $event: any): void {
+  public populateQuestions(which: string, $event: any): void {
     // known Angular bug for null in Select element
     if ($event.target.value !== 'null') {
       this.securityQuestionsKeyPair[which] = $event.target.value;
@@ -82,6 +78,19 @@ export class SignupComponent implements OnInit {
       this.securityQuestionsKeyPair[which] = null;
     }
 
-    this.securityQuestions = Object.keys(this.securityQuestionsKeyPair).map( (question: string) => this.securityQuestionsKeyPair[question]);
+    // save selected questions into array for back end
+    this.securityQuestionsRequest = Object.keys(this.securityQuestionsKeyPair).map( (question: string) => this.securityQuestionsKeyPair[question]);
+  }
+
+  public populateAnswers(which: string, $event: any): void {
+    // known Angular bug for null in Select element
+    if ($event.target.value !== 'null') {
+      this.securityAnswersKeyPair[which] = $event.target.value;
+    } else {
+      this.securityAnswersKeyPair[which] = null;
+    }
+
+    // save selected questions into array for back end
+    this.securityAnswersRequest = Object.keys(this.securityAnswersKeyPair).map( (answer: string) => this.securityAnswersKeyPair[answer]);
   }
 }

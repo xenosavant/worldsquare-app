@@ -18,7 +18,7 @@ export class AccountService {
   ) { }
 
   public signup(request: SignupRequest): Observable<SignupResponse> {
-    return this.httpService.post(this.baseUrl + '/api/account', request);
+    return this.httpService.post(this.baseUrl + '/api/account/signup', request);
   }
 
   public getSecurityQuestions(): Observable<SecurityQuestionsResponse[]> {
