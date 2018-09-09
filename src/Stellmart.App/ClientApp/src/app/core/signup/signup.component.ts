@@ -7,6 +7,7 @@ import { SignupRequest } from '../../shared/models/account/signup-request.model'
 import { MatchOtherValidator } from '../../shared/validators/match-other.validator';
 import { PasswordPatternValidator } from '../../shared/validators/password-pattern.validator';
 import { SecurityQuestionsResponse } from '../../shared/models/account/security-questions-response.model';
+import { AuthenticationService } from '../../shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -27,7 +28,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
-    private formValidationService: FormValidationService
+    private formValidationService: FormValidationService,
+    private authenticationService: AuthenticationService
   ) {
 
   }
@@ -56,7 +58,7 @@ export class SignupComponent implements OnInit {
 
       this.accountService.signup(request)
         .subscribe((result: SignupResponse) => {
-
+          this.authenticationService.Authorize();
         });
     } else {
       this.formValidationService.validateAllFormFields(this.form);
