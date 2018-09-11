@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Collections.Generic;
+using System.IO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -41,7 +43,20 @@ namespace Stellmart.App
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+
+            // angular reroute to index.html if accessed directly via browser address
+            app.Use(async (context, next) =>
+                {
+                    await next();
+                    if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value))
+                    {
+                        context.Request.Path = "/index.html";
+                        await next();
+                    }
+                })
+                .UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" } })
+                .UseStaticFiles();
+
             app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
