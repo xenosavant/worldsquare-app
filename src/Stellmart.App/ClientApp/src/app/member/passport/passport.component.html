@@ -1,16 +1,17 @@
-<div class="container">
+<div class="container container-240">
     <div class="row">
-        <div class="col-2">
+        <div class="col-lg-3 widget-verticalmenu">
             <app-sidebar></app-sidebar>
         </div>
-        <div class="col-10">
+        <div class="col-lg-9 widget-left">
             <div class="row">
                 <div class="col-12">
                     <h2>Level 1 (KYC nationality)</h2>
                     <div *ngIf="verificationLevel === 1;else levelOneVerified">
                         <p>Scan the Yoti QR code to continue</p>
                         <div>
-                            <span [attr.data-yoti-application-id]="yotiApplicationId" [attr.data-yoti-scenario-id]="yotiScenarioId" data-yoti-type="instant">
+                            <span [attr.data-yoti-application-id]="yotiApplicationId" [attr.data-yoti-scenario-id]="yotiScenarioId"
+                                data-yoti-type="instant">
                                 Use Yoti
                             </span>
                         </div>
@@ -21,16 +22,16 @@
                 </div>
             </div>
             <div class="row">
-                    <div class="col-12">
-                        <h2>Level 2 (KYC Residence)</h2>
-                        <div *ngIf="verificationLevel >= 1 && verificationLevel < 3;else levelTwoVerified">
-                            Please verify yourself with uploading utility bill:
-                        </div>
-                        <ng-template #levelTwoVerified>
-                            Already Level 2 verified
-                        </ng-template>
+                <div class="col-12">
+                    <h2>Level 2 (KYC Residence)</h2>
+                    <div *ngIf="verificationLevel >= 1 && verificationLevel < 3;else levelTwoVerified">
+                        Please verify yourself with uploading utility bill:
                     </div>
+                    <ng-template #levelTwoVerified>
+                        Already Level 2 verified
+                    </ng-template>
                 </div>
+            </div>
         </div>
     </div>
 </div>

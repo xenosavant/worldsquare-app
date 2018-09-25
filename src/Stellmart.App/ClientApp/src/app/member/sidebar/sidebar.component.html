@@ -1,26 +1,12 @@
-<!-- Sidebar -->
-<div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li>
-                <a href="#" [routerLink]="['/member/profile']">Profile</a>
-            </li>
-            <li>
-                <a href="#" [routerLink]="['/member/passport']">Passport</a>
-            </li>
-            <li>
-                <a href="#">Overview</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
+<div class="navbar-vertical">
+    <button class="navbar-toggles"><span>Member area</span></button>
+</div>
+<div class="vertical-wrapper">
+    <ul class="vertical-group">
+        <li class="vertical-item level1"><a href="#" [routerLink]="['/member/profile']">Profile</a></li>
+        <li class="vertical-item level1"><a href="#" [routerLink]="['/member/passport']">Passport</a></li>
+        <li class="vertical-item level1"><a href="#">Transactions</a></li>
+        <li class="vertical-item level1"><a href="#">Selling</a></li>
+        <li class="vertical-item level1"><a href="#">History</a></li>
+    </ul>
+</div>
