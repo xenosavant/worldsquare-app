@@ -1,5 +1,5 @@
 # Worldsquare Client
-[![Build status](https://stellmart.visualstudio.com/StellMart/_apis/build/status/app/app-master)](https://stellmart.visualstudio.com/StellMart/_build/latest?definitionId=6)
+[![version][version-badge]][CHANGELOG] [![Build status](https://stellmart.visualstudio.com/StellMart/_apis/build/status/app/app-master)](https://stellmart.visualstudio.com/StellMart/_build/latest?definitionId=6)
 
 ## <a name="1"></a>Installing
 Requirements:
@@ -40,3 +40,6 @@ All available commands are the following:
     "start-ngrok": "ng serve --host 0.0.0.0 --port 5000 --disableHostCheck"
   }
 ```
+
+[CHANGELOG]: ./CHANGELOG.md
+[version-badge]: https://img.shields.io/badge/version-0.0.1-blue.svg
