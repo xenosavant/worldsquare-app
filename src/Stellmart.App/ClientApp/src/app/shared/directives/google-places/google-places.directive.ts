@@ -17,26 +17,28 @@ export class GooglePlacesDirective implements OnInit {
   }
 
   public getFormattedAddress(place: any): {} {
-    let location_obj = {};
-    for (let i in place.address_components) {
-      let item = place.address_components[i];
-      
+    const location_obj: {} = {};
+
+    for (const i of Object.keys(place.address_components)) {
+      const item: any = place.address_components[i];
+
       location_obj['formatted_address'] = place.formatted_address;
-      if(item['types'].indexOf("locality") > -1) {
-        location_obj['locality'] = item['long_name']
-      } else if (item['types'].indexOf("administrative_area_level_1") > -1) {
-        location_obj['admin_area_l1'] = item['short_name']
-      } else if (item['types'].indexOf("street_number") > -1) {
-        location_obj['street_number'] = item['short_name']
-      } else if (item['types'].indexOf("route") > -1) {
-        location_obj['route'] = item['long_name']
-      } else if (item['types'].indexOf("country") > -1) {
-        location_obj['country'] = item['long_name']
-      } else if (item['types'].indexOf("postal_code") > -1) {
-        location_obj['postal_code'] = item['short_name']
+
+      if (item['types'].indexOf('locality') > -1) {
+        location_obj['locality'] = item['long_name'];
+      } else if (item['types'].indexOf('administrative_area_level_1') > -1) {
+        location_obj['admin_area_l1'] = item['short_name'];
+      } else if (item['types'].indexOf('street_number') > -1) {
+        location_obj['street_number'] = item['short_name'];
+      } else if (item['types'].indexOf('route') > -1) {
+        location_obj['route'] = item['long_name'];
+      } else if (item['types'].indexOf('country') > -1) {
+        location_obj['country'] = item['long_name'];
+      } else if (item['types'].indexOf('postal_code') > -1) {
+        location_obj['postal_code'] = item['short_name'];
       }
-     
     }
+
     return location_obj;
   }
 
