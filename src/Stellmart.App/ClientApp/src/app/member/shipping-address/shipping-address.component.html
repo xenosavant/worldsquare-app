@@ -1,0 +1,24 @@
+<div class="container container-240">
+  <div class="row">
+    <div class="col-lg-3 widget-verticalmenu">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-lg-9 widget-left">
+      <h2>Your Shipping Addresses</h2>
+      <div class="input-container">
+        <input 
+        type="text"
+        class="google-place-input"
+        appGooglePlaces
+        (selected)="setAddress($event)"
+        placeholder="Type to search..">
+        <!-- Displaying the contents of the address object received from our event emitter -->
+        <ul style="list-style-type: none;">
+          <li *ngFor="let key of addrKeys">
+            <span style="font-weight: bold">{{key}}</span>: <span>{{addr[key]}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

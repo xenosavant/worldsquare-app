@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PassportComponent } from './passport/passport.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ShippingAddressComponent } from './shipping-address/shipping-address.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,11 @@ const routes: Routes = [
     {
         path: 'profile',
         component: ProfileComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'shipping-address',
+        component: ShippingAddressComponent,
         pathMatch: 'full'
     }
 ];

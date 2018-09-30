@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular
 import { ConfigService } from './services/config/config.service';
 import { FieldErrorComponent } from './components/field-error/field-error.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { GooglePlacesDirective } from './directives/google-places/google-places.directive';
 
 /**
 * Exported function so that it works with AOT
@@ -23,11 +24,13 @@ export function loadConfigService(configService: ConfigService): Function {
     ],
     declarations: [
         FieldErrorComponent,
-        DropdownComponent
+        DropdownComponent,
+        GooglePlacesDirective
     ],
     exports: [
         FieldErrorComponent,
-        DropdownComponent
+        DropdownComponent,
+        GooglePlacesDirective
     ],
     providers: [
         { provide: APP_INITIALIZER, useFactory: loadConfigService , deps: [ConfigService], multi: true }

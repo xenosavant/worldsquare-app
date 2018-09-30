@@ -5,16 +5,22 @@ import { MemberRoutingModule } from './member-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { PassportComponent } from './passport/passport.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ShippingAddressComponent } from './shipping-address/shipping-address.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
-        MemberRoutingModule
+        MemberRoutingModule,
+        ReactiveFormsModule,
+        SharedModule
     ],
     declarations: [
         ProfileComponent,
         PassportComponent,
-        SidebarComponent
+        SidebarComponent,
+        ShippingAddressComponent
     ]
 })
 export class MemberModule { }
