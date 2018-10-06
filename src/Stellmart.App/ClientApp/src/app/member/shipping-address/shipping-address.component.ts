@@ -1,17 +1,22 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormValidationService } from '../../shared/services/form-validation/form-validation.service';
+import { GooglePlacesResponse } from '../../shared/models/google-places-response.model';
 
 @Component({
   selector: 'app-shipping-address',
   templateUrl: './shipping-address.component.html',
   styleUrls: ['./shipping-address.component.scss']
 })
-export class ShippingAddressComponent {
+export class ShippingAddressComponent implements OnInit {
 
+  public googlePlacesResponse: GooglePlacesResponse;
   public form: FormGroup;
 
   constructor(
-    private zone: NgZone
+    private zone: NgZone,
+    private formValidationService: FormValidationService,
+    private formBuilder: FormBuilder
   ) {
 
   }
@@ -19,10 +24,28 @@ export class ShippingAddressComponent {
   public addrKeys: string[];
   public addr: object;
 
-  public setAddress(addrObj: {}): void {
+  public ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      search: ['', Validators.required],
+      route: ['', Validators.required],
+      street_number: ['', Validators.required],
+      locality: ['', Validators.required],
+      administrative_area_level_1: ['', Validators.required],
+      administrative_area_level_2: ['', Validators.required],
+      sublocality_level_1: ['', Validators.required],
+      neighborhood: ['', Validators.required],
+      postal_code: ['', Validators.required],
+      country: ['', Validators.required]
+    });
+  }
+
+  public setAddress(addrObj: any): void {
+
     this.zone.run(() => {
-      this.addr = addrObj;
-      this.addrKeys = Object.keys(addrObj);
+      this.googlePlacesResponse = addrObj;
+      console.log(addrObj);
+      console.log(this.googlePlacesResponse);
+      console.log(this.googlePlacesResponse.route);
     });
   }
 }
