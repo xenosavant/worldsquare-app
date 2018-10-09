@@ -17,20 +17,19 @@
         <div *ngIf="googlePlacesResponse">
           <div class="form-group">
             <label for="route">Street</label>
-            <input class="form-control" name="route" formControlName="route" placeholder="Street" [value]="googlePlacesResponse.route" />
+            <input class="form-control" name="route" formControlName="route" placeholder="Street" />
             <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'route','required')"
               errorMessage="Field is required"></app-field-error>
           </div>
           <div class="form-group">
             <label for="street_number">Street Number</label>
-            <input class="form-control" name="street_number" formControlName="street_number" placeholder="Street Number"
-              [value]="googlePlacesResponse.street_number" />
+            <input class="form-control" name="street_number" formControlName="street_number" placeholder="Street Number" />
             <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'street_number','required')"
               errorMessage="Field is required"></app-field-error>
           </div>
           <div class="form-group" *ngIf="googlePlacesResponse.locality != undefined;else show_administrative_area_level_1">
             <label for="locality">City</label>
-            <input class="form-control" name="locality" formControlName="locality" placeholder="City" [value]="googlePlacesResponse.locality" />
+            <input class="form-control" name="locality" formControlName="locality" placeholder="City" />
             <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'locality','required')"
               errorMessage="Field is required"></app-field-error>
           </div>
@@ -38,7 +37,7 @@
             <div class="form-group">
               <label for="administrative_area_level_1">City</label>
               <input class="form-control" name="administrative_area_level_1" formControlName="administrative_area_level_1"
-                placeholder="City" [value]="googlePlacesResponse.administrative_area_level_1" />
+                placeholder="City" />
               <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'administrative_area_level_1','required')"
                 errorMessage="Field is required"></app-field-error>
             </div>
@@ -46,34 +45,31 @@
           <div class="form-group" *ngIf="googlePlacesResponse.administrative_area_level_2">
             <label for="administrative_area_level_2">Area</label>
             <input class="form-control" name="administrative_area_level_2" formControlName="administrative_area_level_2"
-              placeholder="Area" [value]="googlePlacesResponse.administrative_area_level_2" />
+              placeholder="Area" />
             <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'administrative_area_level_2','required')"
               errorMessage="Field is required"></app-field-error>
           </div>
           <div class="form-group" *ngIf="googlePlacesResponse.sublocality_level_1">
             <label for="sublocality_level_1">Sublocality</label>
-            <input class="form-control" name="sublocality_level_1" formControlName="sublocality_level_1" placeholder="Sublocality"
-              [value]="googlePlacesResponse.sublocality_level_1" />
+            <input class="form-control" name="sublocality_level_1" formControlName="sublocality_level_1" placeholder="Sublocality" />
             <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'sublocality_level_1','required')"
               errorMessage="Field is required"></app-field-error>
           </div>
           <div class="form-group" *ngIf="googlePlacesResponse.neighborhood">
             <label for="neighborhood">Neighborhood</label>
-            <input class="form-control" name="neighborhood" formControlName="neighborhood" placeholder="Neighborhood"
-              [value]="googlePlacesResponse.neighborhood" />
+            <input class="form-control" name="neighborhood" formControlName="neighborhood" placeholder="Neighborhood" />
             <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'neighborhood','required')"
               errorMessage="Field is required"></app-field-error>
           </div>
           <div class="form-group">
             <label for="postal_code">Postal Code</label>
-            <input class="form-control" name="postal_code" formControlName="postal_code" placeholder="Postal Code"
-              [value]="googlePlacesResponse.postal_code" />
+            <input class="form-control" name="postal_code" formControlName="postal_code" placeholder="Postal Code" />
             <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'postal_code','required')"
               errorMessage="Field is required"></app-field-error>
           </div>
           <div class="form-group">
             <label for="country">Country</label>
-            <input class="form-control" name="country" formControlName="country" placeholder="Country" [value]="googlePlacesResponse.country" />
+            <input class="form-control" name="country" formControlName="country" placeholder="Country" />
             <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'country','required')"
               errorMessage="Field is required"></app-field-error>
           </div>
