@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormValidationService } from '../../shared/services/form-validation/form-validation.service';
-import { AccountService } from '../../shared/services/account/account.service';
+import { AccountService } from '../../shared/services/api/account/account.service';
 import { SignupResponse } from '../../shared/models/account/signup-response.model';
 import { SignupRequest } from '../../shared/models/account/signup-request.model';
 import { MatchOtherValidator } from '../../shared/validators/match-other.validator';

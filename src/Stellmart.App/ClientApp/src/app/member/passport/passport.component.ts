@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PassportService } from '../../shared/services/passport/passport.service';
+import { PassportService } from '../../shared/services/api/passport/passport.service';
 import { YotiRequest } from '../../shared/models/passport/yoti-request.model';
 import { YotiResponse } from '../../shared/models/passport/yoti-response.model';
 import { APP_CONFIG } from '../../shared/services/config/config.service';
-import { UserService } from '../../shared/services/user/user.service';
+import { UserService } from '../../shared/services/api/user/user.service';
 import { UserResponse } from '../../shared/models/user/user-response.model';
 
 @Component({

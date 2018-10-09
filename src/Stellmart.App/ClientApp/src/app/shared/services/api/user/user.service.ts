@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { UserResponse } from '../../models/user/user-response.model';
+import { UserResponse } from '../../../models/user/user-response.model';
 import { Observable } from 'rxjs';
-import { APP_CONFIG } from '../config/config.service';
-import { HttpClientService } from '../http/http-client.service';
+import { APP_CONFIG } from '../../config/config.service';
+import { HttpClientService } from '../../http/http-client.service';
 
 @Injectable({
     providedIn: 'root'

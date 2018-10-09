@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone, OnChanges } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormValidationService } from '../../shared/services/form-validation/form-validation.service';
 import { GooglePlacesResponse } from '../../shared/models/google-places-response.model';
@@ -39,13 +39,9 @@ export class ShippingAddressComponent implements OnInit {
     });
   }
 
-  public setAddress(addrObj: any): void {
-
+  public setAddress(addrObj: GooglePlacesResponse): void {
     this.zone.run(() => {
       this.googlePlacesResponse = addrObj;
-      console.log(addrObj);
-      console.log(this.googlePlacesResponse);
-      console.log(this.googlePlacesResponse.route);
     });
   }
 }
