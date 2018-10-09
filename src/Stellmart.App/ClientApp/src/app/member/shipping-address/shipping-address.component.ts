@@ -2,6 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormValidationService } from '../../shared/services/form-validation/form-validation.service';
 import { GooglePlacesResponse } from '../../shared/models/google-places-response.model';
+import { LocationResponse } from '../../shared/models/location/location-response.model';
+import { LocationService } from '../../shared/services/api/location/location.service';
 
 @Component({
   selector: 'app-shipping-address',
@@ -10,13 +12,15 @@ import { GooglePlacesResponse } from '../../shared/models/google-places-response
 })
 export class ShippingAddressComponent implements OnInit {
 
+  public shippingAddresses: LocationResponse[];
   public googlePlacesResponse: GooglePlacesResponse;
   public form: FormGroup;
 
   constructor(
     private zone: NgZone,
     private formValidationService: FormValidationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private locationService: LocationService
   ) {
 
   }
@@ -25,6 +29,8 @@ export class ShippingAddressComponent implements OnInit {
   public addr: object;
 
   public ngOnInit(): void {
+    this.getShippingAddresses();
+
     this.form = this.formBuilder.group({
       search: ['', Validators.required],
       route: ['', Validators.required],
@@ -43,5 +49,12 @@ export class ShippingAddressComponent implements OnInit {
     this.zone.run(() => {
       this.googlePlacesResponse = addrObj;
     });
+  }
+
+  public getShippingAddresses(): void {
+    this.locationService.getShippingAddresses().subscribe(
+      (addresses: LocationResponse[]) => {
+        this.shippingAddresses = addresses;
+      });
   }
 }
