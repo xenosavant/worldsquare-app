@@ -50,17 +50,7 @@ export class ShippingAddressComponent implements OnInit {
     this.zone.run(() => {
       this.googlePlacesResponse = addrObj;
 
-      this.form.patchValue({
-        route: this.googlePlacesResponse.route,
-        street_number: this.googlePlacesResponse.street_number,
-        locality: this.googlePlacesResponse.locality,
-        administrative_area_level_1: this.googlePlacesResponse.administrative_area_level_1,
-        administrative_area_level_2: this.googlePlacesResponse.administrative_area_level_2,
-        sublocality_level_1: this.googlePlacesResponse.sublocality_level_1,
-        neighborhood: this.googlePlacesResponse.neighborhood,
-        postal_code: this.googlePlacesResponse.postal_code,
-        country: this.googlePlacesResponse.country
-      });
+      this.form.patchValue(this.googlePlacesResponse);
     });
   }
 
