@@ -9,4 +9,6 @@ export interface GooglePlacesResponse {
     postal_code: string;
     route: string;
     street_number: string;
+    longtitude: number;
+    latitude: number;
 }

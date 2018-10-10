@@ -65,7 +65,10 @@ export class ShippingAddressComponent implements OnInit {
     if (this.form.valid) {
 
       const request: LocationRequest = {
-        locationComponentsFromApp: JSON.stringify(this.form.value)
+        locationComponentsFromApp: JSON.stringify(this.form.value),
+        address: this.googlePlacesResponse.formatted_address,
+        latitude: this.googlePlacesResponse.latitude,
+        longtitude: this.googlePlacesResponse.longtitude
       };
 
       this.locationService.create(request)

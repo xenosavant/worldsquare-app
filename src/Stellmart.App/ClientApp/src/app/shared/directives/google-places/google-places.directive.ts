@@ -23,6 +23,8 @@ export class GooglePlacesDirective implements OnInit {
       const item: any = place.address_components[i];
 
       location_obj['formatted_address'] = place.formatted_address;
+      location_obj['latitude'] = place.geometry.location.lat;
+      location_obj['longtitude'] = place.geometry.location.lng;
 
       if (item['types'].indexOf('locality') > -1) {
         location_obj['locality'] = item['long_name'];
