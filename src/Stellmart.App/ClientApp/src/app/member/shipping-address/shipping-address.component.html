@@ -6,8 +6,29 @@
     <div class="col-lg-9 widget-left">
       <h2>Your Shipping Addresses</h2>
 
+      <div class="feature v2">
+        <div class="container container-240">
+          <div class="feature-inside">
+            <div *ngFor="let shippingAddress of shippingAddresses;" class="feature-block v2">
+              <div class="feature-block-img"><img src="assets/img/feature/g-truck.png" alt="" class="img-reponsive"></div>
+              <div class="feature-info v2">
+                <ul>
+                    <li>{{shippingAddress.parsedAddress.street_number }}, {{shippingAddress.parsedAddress.route }}</li>
+                    <li>{{shippingAddress.parsedAddress.locality }}, {{shippingAddress.parsedAddress.postal_code }}</li>
+                    <li>{{shippingAddress.parsedAddress.administrative_area_level_1 }}</li>
+                    <li>{{shippingAddress.parsedAddress.administrative_area_level_2 }}</li>
+                    <li>{{shippingAddress.parsedAddress.sublocality_level_1 }}</li>
+                    <li>{{shippingAddress.parsedAddress.neighborhood }}</li>
+                    <li>{{shippingAddress.parsedAddress.country }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <form [formGroup]="form" (ngSubmit)="save()">
-        <h4>Add Shipping Address</h4>
+        <h4>Add New Shipping Address</h4>
         <div class="form-group">
           <label for="search">Search</label>
           <input type="text" class="form-control" formControlName="search" appGooglePlaces (selected)="setAddress($event)"

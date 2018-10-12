@@ -36,9 +36,9 @@ export class ShippingAddressComponent implements OnInit {
       search: ['', Validators.required],
       route: ['', Validators.required],
       street_number: ['', Validators.required],
-      locality: ['', Validators.required],
+      locality: '',
       administrative_area_level_1: ['', Validators.required],
-      administrative_area_level_2: ['', Validators.required],
+      administrative_area_level_2: '',
       sublocality_level_1: [''],
       neighborhood: [''],
       postal_code: ['', Validators.required],
@@ -58,6 +58,9 @@ export class ShippingAddressComponent implements OnInit {
     this.locationService.getShippingAddresses().subscribe(
       (addresses: LocationResponse[]) => {
         this.shippingAddresses = addresses;
+        this.shippingAddresses.map((result: LocationResponse) => {
+          result.parsedAddress = JSON.parse(result.locationComponentsFromApp);
+       });
       });
   }
 
@@ -73,7 +76,7 @@ export class ShippingAddressComponent implements OnInit {
 
       this.locationService.create(request)
         .subscribe((result: LocationResponse) => {
-
+          this.getShippingAddresses();
         });
     } else {
       this.formValidationService.validateAllFormFields(this.form);
