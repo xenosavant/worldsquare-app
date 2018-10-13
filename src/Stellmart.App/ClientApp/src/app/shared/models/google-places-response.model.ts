@@ -1,4 +1,5 @@
 export interface GooglePlacesResponse {
+    fullName: string;
     administrative_area_level_1: string;
     administrative_area_level_2: string;
     sublocality_level_1: string;

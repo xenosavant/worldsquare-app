@@ -34,6 +34,7 @@ export class ShippingAddressComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       search: ['', Validators.required],
+      fullName: ['', Validators.required],
       route: ['', Validators.required],
       street_number: ['', Validators.required],
       locality: '',
