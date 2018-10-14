@@ -13,6 +13,9 @@
               <div class="feature-block-img"><img src="assets/img/feature/g-truck.png" alt="" class="img-reponsive"></div>
               <div class="feature-info v2">
                 <ul>
+                  <li>
+                    <span *ngIf="shippingAddress.isDefault" class="badge">Default Address</span>
+                  </li>
                   <li><b>{{shippingAddress.parsedAddress.fullName }}</b></li>
                   <li>{{shippingAddress.parsedAddress.street_number }}, {{shippingAddress.parsedAddress.route }}</li>
                   <li>{{shippingAddress.parsedAddress.locality }}</li>
@@ -23,6 +26,15 @@
                   <li>{{shippingAddress.parsedAddress.neighborhood }}</li>
                   <li>{{shippingAddress.parsedAddress.country }}</li>
                 </ul>
+                <span>
+                  <a class="action-btn">Edit</a>
+                  |
+                  <a class="action-btn">Delete</a>
+                  <span *ngIf="!shippingAddress.isDefault">
+                    |
+                    <a (click)="setDefaultShippingAddress(shippingAddress)" class="action-btn">Set as Default</a>
+                  </span>
+                </span>
               </div>
             </div>
           </div>
@@ -33,7 +45,8 @@
         <h4>Add New Shipping Address</h4>
         <div class="form-group">
           <label for="search">Search</label>
-          <input type="text" class="form-control" formControlName="search" appGooglePlaces (selected)="setAddress($event)" placeholder="Type to search.." />
+          <input type="text" class="form-control" formControlName="search" appGooglePlaces (selected)="setAddress($event)"
+            placeholder="Type to search.." />
           <app-field-error [displayError]="formValidationService.isFieldInvalid(form,'search','required')" errorMessage="Field is required"></app-field-error>
         </div>
         <div *ngIf="googlePlacesResponse">

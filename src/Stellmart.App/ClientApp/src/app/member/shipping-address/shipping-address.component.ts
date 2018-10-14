@@ -75,12 +75,23 @@ export class ShippingAddressComponent implements OnInit {
         longtitude: this.googlePlacesResponse.longtitude
       };
 
-      this.locationService.create(request)
+      this.locationService.save(request)
         .subscribe((result: LocationResponse) => {
           this.getShippingAddresses();
         });
     } else {
       this.formValidationService.validateAllFormFields(this.form);
     }
+  }
+
+  public setDefaultShippingAddress(model: LocationResponse): void {
+    const request: LocationRequest = {
+      id: model.id
+    };
+
+    this.locationService.setDefaultShippingAddress(request)
+      .subscribe((result: LocationResponse) => {
+        this.getShippingAddresses();
+      });
   }
 }

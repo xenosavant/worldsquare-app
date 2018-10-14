@@ -16,8 +16,12 @@ export class LocationService {
     private httpService: HttpClientService
   ) { }
 
-  public create(request: LocationRequest): Observable<LocationResponse> {
+  public save(request: LocationRequest): Observable<LocationResponse> {
     return this.httpService.post(this.baseUrl + '/api/location', request);
+  }
+
+  public setDefaultShippingAddress(request: LocationRequest): Observable<LocationResponse> {
+    return this.httpService.post(this.baseUrl + '/api/location/setDefaultShippingAddress', request);
   }
 
   public getShippingAddresses(): Observable<LocationResponse[]> {
