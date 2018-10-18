@@ -21,7 +21,7 @@ export class LocationService {
   }
 
   public setDefault(request: LocationRequest): Observable<LocationResponse> {
-    return this.httpService.patch(this.baseUrl + '/api/location/setDefaultShippingAddress', request);
+    return this.httpService.patch(this.baseUrl + '/api/location/setDefault', request);
   }
 
   public delete(request: LocationRequest): Observable<LocationResponse> {
