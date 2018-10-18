@@ -20,8 +20,12 @@ export class LocationService {
     return this.httpService.post(this.baseUrl + '/api/location', request);
   }
 
-  public setDefaultShippingAddress(request: LocationRequest): Observable<LocationResponse> {
-    return this.httpService.post(this.baseUrl + '/api/location/setDefaultShippingAddress', request);
+  public setDefault(request: LocationRequest): Observable<LocationResponse> {
+    return this.httpService.patch(this.baseUrl + '/api/location/setDefaultShippingAddress', request);
+  }
+
+  public delete(request: LocationRequest): Observable<LocationResponse> {
+    return this.httpService.patch(this.baseUrl + '/api/location/delete', request);
   }
 
   public getShippingAddresses(): Observable<LocationResponse[]> {
