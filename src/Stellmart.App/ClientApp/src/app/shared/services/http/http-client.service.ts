@@ -70,6 +70,25 @@ export class HttpClientService {
         );
       }
 
+     /**
+       * Patch API wrapper
+       * @param endpoint The endpoint you want to call
+       * @param body The body for the post request
+       * @param params The params you want to pass in
+      */
+     public patch<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
+      return this.authenticationService.GetToken()
+      .pipe(
+        map((jwt: string) => ({
+          headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
+          params: params
+        })),
+        mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          this.http.patch<T>(endpoint, body, options)
+        )
+      );
+    }
+
       /**
        * Delete API wrapper
        * @param endpoint The endpoint you want to call
