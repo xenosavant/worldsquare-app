@@ -84,12 +84,23 @@ export class ShippingAddressComponent implements OnInit {
     }
   }
 
-  public setDefaultShippingAddress(model: LocationResponse): void {
+  public setDefault(model: LocationResponse): void {
     const request: LocationRequest = {
       id: model.id
     };
 
-    this.locationService.setDefaultShippingAddress(request)
+    this.locationService.setDefault(request)
+      .subscribe((result: LocationResponse) => {
+        this.getShippingAddresses();
+      });
+  }
+
+  public delete(model: LocationResponse): void {
+    const request: LocationRequest = {
+      id: model.id
+    };
+
+    this.locationService.delete(request)
       .subscribe((result: LocationResponse) => {
         this.getShippingAddresses();
       });
