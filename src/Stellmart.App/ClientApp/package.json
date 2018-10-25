@@ -25,6 +25,7 @@
     "core-js": "^2.5.7",
     "font-awesome": "^4.7.0",
     "jsrsasign": "^8.0.12",
+    "karma-spec-reporter": "0.0.32",
     "rxjs": "^6.2.2",
     "zone.js": "^0.8.26"
   },
