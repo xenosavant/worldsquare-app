@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PassportComponent } from './passport.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
 
 describe('PassportComponent', () => {
   let component: PassportComponent;
@@ -8,7 +10,14 @@ describe('PassportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PassportComponent ]
+      imports: [
+        RouterModule
+      ],
+      declarations:
+      [
+        PassportComponent,
+        SidebarComponent
+      ]
     })
     .compileComponents();
   }));

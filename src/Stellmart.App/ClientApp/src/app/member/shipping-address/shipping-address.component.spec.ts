@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 import { ShippingAddressComponent } from './shipping-address.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('ShippingAddressComponent', () => {
   let component: ShippingAddressComponent;
@@ -8,7 +12,14 @@ describe('ShippingAddressComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShippingAddressComponent ]
+      imports: [
+        HttpClientTestingModule,
+        ReactiveFormsModule
+      ],
+      declarations: [
+        ShippingAddressComponent,
+        SidebarComponent
+      ]
     })
     .compileComponents();
   }));
