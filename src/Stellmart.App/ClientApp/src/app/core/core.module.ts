@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         FooterComponent,
         HeaderComponent,
         NotFoundComponent,
-        HomeComponent
+        HomeComponent,
+        ForgotpasswordComponent
     ],
     exports: [
         RouterModule,
