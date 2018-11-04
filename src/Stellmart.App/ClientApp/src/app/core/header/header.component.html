@@ -68,6 +68,9 @@
                                 <div *ngIf="!isAuthorized()" class="element hidden-xs hidden-sm">
                                     <a href="#" [routerLink]="['/signup']">Sign up</a>
                                 </div>
+                                <div *ngIf="!isAuthorized()" class="element hidden-xs hidden-sm">
+                                        <a href="#" [routerLink]="['/forgotpassword']">Forgot Password</a>
+                                    </div>
                                 <div *ngIf="isAuthorized()" class="element hidden-xs hidden-sm">
                                     <a href="#" [routerLink]="['/member/profile']">Profile</a>
                                 </div>
