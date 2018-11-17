@@ -9,6 +9,8 @@ import { ResetPasswordResponse } from '../../../models/account/reset-password-re
 import { ResetPasswordRequest } from '../../../models/account/reset-password-request.model';
 import { ForgotPasswordRequest } from '../../../models/account/forgot-password-request.model';
 import { ForgotPasswordResponse } from '../../../models/account/forgot-password-response.model';
+import { ConfirmEmailRequest } from 'src/app/shared/models/account/confirm-email-request.model';
+import { ConfirmEmailResponse } from 'src/app/shared/models/account/confirm-email-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ import { ForgotPasswordResponse } from '../../../models/account/forgot-password-
 export class AccountService {
   private baseUrl: string = APP_CONFIG.AppSettings.ApiUrl;
 
-  constructor(private httpService: HttpClientService) {}
+  constructor(private httpService: HttpClientService) { }
 
   public signup(request: SignupRequest): Observable<SignupResponse> {
     return this.httpService.post(this.baseUrl + '/api/account/signup', request);
@@ -42,6 +44,15 @@ export class AccountService {
   ): Observable<ForgotPasswordResponse> {
     return this.httpService.post(
       this.baseUrl + '/api/account/forgotpassword',
+      request
+    );
+  }
+
+  public confirmEmail(
+    request: ConfirmEmailRequest
+  ): Observable<ConfirmEmailResponse> {
+    return this.httpService.post(
+      this.baseUrl + '/api/account/confirmemail',
       request
     );
   }
