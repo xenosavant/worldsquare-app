@@ -12,29 +12,27 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ForgotPasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        CoreRoutingModule,
-        AngularFontAwesomeModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        SharedModule
-    ],
-    declarations: [
-        SignupComponent,
-        FooterComponent,
-        HeaderComponent,
-        NotFoundComponent,
-        HomeComponent,
-        ForgotpasswordComponent
-    ],
-    exports: [
-        RouterModule,
-        HeaderComponent,
-        FooterComponent
-    ]
+  imports: [
+    CommonModule,
+    CoreRoutingModule,
+    AngularFontAwesomeModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule
+  ],
+  declarations: [
+    SignupComponent,
+    FooterComponent,
+    HeaderComponent,
+    NotFoundComponent,
+    HomeComponent,
+    ForgotPasswordComponent,
+    ResetpasswordComponent
+  ],
+  exports: [RouterModule, HeaderComponent, FooterComponent]
 })
 export class CoreModule { }

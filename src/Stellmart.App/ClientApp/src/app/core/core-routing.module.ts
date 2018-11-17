@@ -4,31 +4,36 @@ import { SignupComponent } from './signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from '../shared/services/authentication/auth-guard.service';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ForgotPasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: HomeComponent,
-        pathMatch: 'full'
-    },
-    {
-        path: 'signup',
-        component: SignupComponent
-    },
-    {
-        path: 'forgotpassword',
-        component: ForgotpasswordComponent
-    },
-    {
-        path: 'member',
-        canActivate: [AuthGuardService],
-        loadChildren: '../member/member.module#MemberModule'
-    },
-    {
-        path: '**',
-        component: NotFoundComponent
-    }
+  {
+    path: '',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'signup',
+    component: SignupComponent
+  },
+  {
+    path: 'forgotpassword',
+    component: ForgotPasswordComponent
+  },
+  {
+    path: 'resetpassword/:userId/:code',
+    component: ResetpasswordComponent
+  },
+  {
+    path: 'member',
+    canActivate: [AuthGuardService],
+    loadChildren: '../member/member.module#MemberModule'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
