@@ -1,27 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ResetPasswordRequest } from 'src/app/shared/models/account/reset-password-request.model';
 import { AccountService } from 'src/app/shared/services/api/account/account.service';
-import { ResetPasswordResponse } from 'src/app/shared/models/account/reset-password-response.model';
 import { FormValidationService } from 'src/app/shared/services/form-validation/form-validation.service';
+import { ForgotPasswordRequest } from 'src/app/shared/models/account/forgot-password-request.model';
+import { ForgotPasswordResponse } from 'src/app/shared/models/account/forgot-password-response.model';
 
 @Component({
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
   styleUrls: ['./forgotpassword.component.scss']
 })
-export class ForgotpasswordComponent implements OnInit {
-
+export class ForgotPasswordComponent implements OnInit {
   private success: boolean;
   private form: FormGroup;
 
-  constructor
-  (
+  constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private formValidationService: FormValidationService
-  ) {
-  }
+  ) {}
 
   public ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -31,13 +28,13 @@ export class ForgotpasswordComponent implements OnInit {
 
   public send(): void {
     if (this.form.valid) {
-
-      const request: ResetPasswordRequest = {
+      const request: ForgotPasswordRequest = {
         email: this.form.value.email
       };
 
-      this.accountService.resetPassword(request)
-        .subscribe((result: ResetPasswordResponse) => {
+      this.accountService
+        .forgotPassword(request)
+        .subscribe((result: ForgotPasswordResponse) => {
           this.success = true;
         });
     } else {
