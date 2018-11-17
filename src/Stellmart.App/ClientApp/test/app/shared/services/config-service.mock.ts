@@ -1,6 +1,6 @@
 import { AppConfig } from 'src/app/shared/services/config/config.service';
 
-export class AppConfigServiceMock {
+export class ConfigServiceMock {
     public appConfig: AppConfig;
 
     constructor() {
