@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from '../shared/services/authentication/auth-guard.service';
 import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
 import { ResetpasswordComponent } from './account/reset-password/reset-password.component';
+import { ConfirmEmailComponent } from './account/confirm-email/confirm-email.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'reset-password/:userId/:code',
     component: ResetpasswordComponent
+  },
+  {
+    path: 'confirm-email/:userId/:code',
+    component: ConfirmEmailComponent
   },
   {
     path: 'member',
