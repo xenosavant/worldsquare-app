@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FormValidationService } from '../../shared/services/form-validation/form-validation.service';
-import { AccountService } from '../../shared/services/api/account/account.service';
-import { SignupResponse } from '../../shared/models/account/signup-response.model';
-import { SignupRequest } from '../../shared/models/account/signup-request.model';
-import { MatchOtherValidator } from '../../shared/validators/match-other.validator';
-import { PasswordPatternValidator } from '../../shared/validators/password-pattern.validator';
-import { SecurityQuestionsResponse } from '../../shared/models/account/security-questions-response.model';
-import { AuthenticationService } from '../../shared/services/authentication/authentication.service';
+import { FormValidationService } from '../../../shared/services/form-validation/form-validation.service';
+import { AccountService } from '../../../shared/services/api/account/account.service';
+import { SignupResponse } from '../../../shared/models/account/signup-response.model';
+import { SignupRequest } from '../../../shared/models/account/signup-request.model';
+import { MatchOtherValidator } from '../../../shared/validators/match-other.validator';
+import { PasswordPatternValidator } from '../../../shared/validators/password-pattern.validator';
+import { SecurityQuestionsResponse } from '../../../shared/models/account/security-questions-response.model';
+import { AuthenticationService } from '../../../shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,11 +16,11 @@ import { AuthenticationService } from '../../shared/services/authentication/auth
 })
 export class SignupComponent implements OnInit {
 
-  public securityQuestionsRequest: string [];
-  public securityQuestionsResponse: string [];
+  public securityQuestionsRequest: string[];
+  public securityQuestionsResponse: string[];
   public securityQuestionsKeyPair: { [key: string]: string } = {};
 
-  public securityAnswersRequest: string [];
+  public securityAnswersRequest: string[];
   public securityAnswersKeyPair: { [key: string]: string } = {};
 
   private form: FormGroup;
@@ -69,7 +69,7 @@ export class SignupComponent implements OnInit {
     this.accountService.getSecurityQuestions()
       .subscribe((data: SecurityQuestionsResponse[]) => {
         this.securityQuestionsResponse = data.map((x: SecurityQuestionsResponse) => x.question);
-    });
+      });
   }
 
   public populateQuestions(which: string, $event: any): void {
@@ -81,7 +81,7 @@ export class SignupComponent implements OnInit {
     }
 
     // save selected questions into array for back end
-    this.securityQuestionsRequest = Object.keys(this.securityQuestionsKeyPair).map( (question: string) => this.securityQuestionsKeyPair[question]);
+    this.securityQuestionsRequest = Object.keys(this.securityQuestionsKeyPair).map((question: string) => this.securityQuestionsKeyPair[question]);
   }
 
   public populateAnswers(which: string, $event: any): void {
@@ -93,6 +93,6 @@ export class SignupComponent implements OnInit {
     }
 
     // save selected questions into array for back end
-    this.securityAnswersRequest = Object.keys(this.securityAnswersKeyPair).map( (answer: string) => this.securityAnswersKeyPair[answer]);
+    this.securityAnswersRequest = Object.keys(this.securityAnswersKeyPair).map((answer: string) => this.securityAnswersKeyPair[answer]);
   }
 }
