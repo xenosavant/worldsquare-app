@@ -54,8 +54,6 @@ export class ResetpasswordComponent implements OnInit {
       request.code = this._code;
       request.userId = this._userId;
 
-      this.accountService.resetPassword(request);
-
       this.accountService
         .resetPassword(request)
         .subscribe((result: ResetPasswordResponse) => {
