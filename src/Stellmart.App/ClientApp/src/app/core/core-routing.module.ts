@@ -4,8 +4,8 @@ import { SignupComponent } from './account/signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from '../shared/services/authentication/auth-guard.service';
-import { ForgotPasswordComponent } from './account/forgotpassword/forgotpassword.component';
-import { ResetpasswordComponent } from './account/resetpassword/resetpassword.component';
+import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
+import { ResetpasswordComponent } from './account/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -18,11 +18,11 @@ const routes: Routes = [
     component: SignupComponent
   },
   {
-    path: 'forgotpassword',
+    path: 'forgot-password',
     component: ForgotPasswordComponent
   },
   {
-    path: 'resetpassword/:userId/:code',
+    path: 'reset-password/:userId/:code',
     component: ResetpasswordComponent
   },
   {

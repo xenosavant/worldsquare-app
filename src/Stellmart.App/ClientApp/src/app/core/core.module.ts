@@ -12,8 +12,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ForgotPasswordComponent } from './account/forgotpassword/forgotpassword.component';
-import { ResetpasswordComponent } from './account/resetpassword/resetpassword.component';
+import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
+import { ResetpasswordComponent } from './account/reset-password/reset-password.component';
+import { ConfirmEmailComponent } from './account/confirm-email/confirm-email.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { ResetpasswordComponent } from './account/resetpassword/resetpassword.co
     NotFoundComponent,
     HomeComponent,
     ForgotPasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    ConfirmEmailComponent
   ],
   exports: [RouterModule, HeaderComponent, FooterComponent]
 })

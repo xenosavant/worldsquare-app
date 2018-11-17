@@ -7,8 +7,8 @@ import { ForgotPasswordResponse } from 'src/app/shared/models/account/forgot-pas
 
 @Component({
   selector: 'app-forgotpassword',
-  templateUrl: './forgotpassword.component.html',
-  styleUrls: ['./forgotpassword.component.scss']
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
   private success: boolean;
@@ -18,7 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private accountService: AccountService,
     private formValidationService: FormValidationService
-  ) {}
+  ) { }
 
   public ngOnInit(): void {
     this.form = this.formBuilder.group({
