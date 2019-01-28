@@ -6,6 +6,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { MatchOtherValidator } from 'src/app/shared/validators/match-other.validator';
 import { ResetPasswordRequest } from 'src/app/shared/models/account/reset-password-request.model';
 import { ResetPasswordResponse } from 'src/app/shared/models/account/reset-password-response.model';
+import { SecurityQuestionsResponse } from 'src/app/shared/models/account/security-questions-response.model';
+import { Dictionary } from 'src/app/shared/models/dictionary.model';
 
 @Component({
   selector: 'app-resetpassword',
@@ -13,6 +15,14 @@ import { ResetPasswordResponse } from 'src/app/shared/models/account/reset-passw
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetpasswordComponent implements OnInit {
+
+  public securityQuestionsRequest: string[];
+  public securityQuestionsResponse: string[];
+  public securityQuestionsKeyPair: { [key: string]: string } = {};
+
+  public securityAnswersRequest: string[];
+  public securityAnswersKeyPair: { [key: string]: string } = {};
+
   private _form: FormGroup;
   private _isRegistered: boolean;
   private _formBuilder: FormBuilder;
@@ -37,22 +47,71 @@ export class ResetpasswordComponent implements OnInit {
       confirmpassword: [
         '',
         [Validators.required, MatchOtherValidator.validate('password')]
-      ]
+      ],
+      securityAnswerFirst: ['', Validators.required],
+      securityAnswerSecond: ['', Validators.required]
     });
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this._code = params['code'];
       this._userId = params['userId'];
+
+      this.getSecurityQuestionsForUser();
     });
+  }
+
+  public getSecurityQuestionsForUser(): void {
+
+    const paramsValues: Dictionary[] = [
+      {
+        key: 'userId',
+        value: this._userId
+      },
+      {
+        key: 'code',
+        value: this._code
+      }
+    ];
+
+    this.accountService.getSecurityQuestionsForUser(paramsValues)
+      .subscribe((data: SecurityQuestionsResponse[]) => {
+        this.securityQuestionsResponse = data.map((x: SecurityQuestionsResponse) => x.question);
+      });
+  }
+
+  public populateQuestions(which: string, $event: any): void {
+    // known Angular bug for null in Select element
+    if ($event.target.value !== 'null') {
+      this.securityQuestionsKeyPair[which] = $event.target.value;
+    } else {
+      this.securityQuestionsKeyPair[which] = null;
+    }
+
+    // save selected questions into array for back end
+    this.securityQuestionsRequest = Object.keys(this.securityQuestionsKeyPair).map((question: string) => this.securityQuestionsKeyPair[question]);
+  }
+
+  public populateAnswers(which: string, $event: any): void {
+    // known Angular bug for null in Select element
+    if ($event.target.value !== 'null') {
+      this.securityAnswersKeyPair[which] = $event.target.value;
+    } else {
+      this.securityAnswersKeyPair[which] = null;
+    }
+
+    // save selected questions into array for back end
+    this.securityAnswersRequest = Object.keys(this.securityAnswersKeyPair).map((answer: string) => this.securityAnswersKeyPair[answer]);
   }
 
   public reset(): void {
     if (this._form.valid) {
-      const request: ResetPasswordRequest = new ResetPasswordRequest();
-      request.password = this._form.value.password;
-      request.confirmpassword = this._form.value.confirmpassword;
-      request.code = this._code;
-      request.userId = this._userId;
+      const request: ResetPasswordRequest = {
+        password: this._form.value.password,
+        confirmpassword: this._form.value.confirmpassword,
+        code: this._code,
+        userId: this._userId,
+        securityAnswers: this.securityAnswersRequest
+      };
 
       this.accountService
         .resetPassword(request)

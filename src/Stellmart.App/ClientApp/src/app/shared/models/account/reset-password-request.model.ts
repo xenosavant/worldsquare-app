@@ -3,4 +3,5 @@ export class ResetPasswordRequest {
     public password: string;
     public confirmpassword: string;
     public userId: string;
+    public securityAnswers: string[];
 }
