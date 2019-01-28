@@ -11,6 +11,9 @@ import { ForgotPasswordRequest } from '../../../models/account/forgot-password-r
 import { ForgotPasswordResponse } from '../../../models/account/forgot-password-response.model';
 import { ConfirmEmailRequest } from 'src/app/shared/models/account/confirm-email-request.model';
 import { ConfirmEmailResponse } from 'src/app/shared/models/account/confirm-email-response.model';
+import { SecurityQuestionsRequest } from 'src/app/shared/models/account/security-questions-request.model';
+import { HttpParams } from '@angular/common/http';
+import { Dictionary } from 'src/app/shared/models/dictionary.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +30,15 @@ export class AccountService {
   public getSecurityQuestions(): Observable<SecurityQuestionsResponse[]> {
     return this.httpService.get(
       this.baseUrl + '/api/account/securityquestions'
+    );
+  }
+
+  public getSecurityQuestionsForUser(paramsDictionary: Dictionary[]): Observable<SecurityQuestionsResponse[]> {
+    const params: HttpParams = this.httpService.buildHttpParams(paramsDictionary);
+
+    return this.httpService.get(
+      this.baseUrl + '/api/account/securityquestionsforuser',
+      params
     );
   }
 
