@@ -1,83 +1,84 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, mergeMap} from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../authentication/authentication.service';
+import { Dictionary } from '../../models/dictionary.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
 
-    constructor(
-        private http: HttpClient,
-        private authenticationService: AuthenticationService,
-      ) { }
+  constructor(
+    private http: HttpClient,
+    private authenticationService: AuthenticationService,
+  ) { }
 
-      /**
-       * Get API wrapper
-       * @param endpoint The endpoint you want to call;
-       * @param params The params you want to pass in
-      */
-      public get<T>(endpoint: string, params?: HttpParams): Observable<T> {
-        return this.authenticationService.GetToken()
-        .pipe(
-          map((jwt: string) => ({
-            headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
-            params: params
-          })),
-          mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
-            this.http.get<T>(endpoint, options)
-          )
-        );
-      }
+  /**
+   * Get API wrapper
+   * @param endpoint The endpoint you want to call;
+   * @param params The params you want to pass in
+  */
+  public get<T>(endpoint: string, params?: HttpParams): Observable<T> {
+    return this.authenticationService.GetToken()
+      .pipe(
+        map((jwt: string) => ({
+          headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
+          params: params
+        })),
+        mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          this.http.get<T>(endpoint, options)
+        )
+      );
+  }
 
-      /**
-       * Post API wrapper
-       * @param endpoint The endpoint you want to call
-       * @param body The body for the post request
-       * @param params The params you want to pass in
-      */
-      public post<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
-        return this.authenticationService.GetToken()
-        .pipe(
-          map((jwt: string) => ({
-            headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
-            params: params
-          })),
-          mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
-            this.http.post<T>(endpoint, body, options)
-          )
-        );
-      }
+  /**
+   * Post API wrapper
+   * @param endpoint The endpoint you want to call
+   * @param body The body for the post request
+   * @param params The params you want to pass in
+  */
+  public post<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
+    return this.authenticationService.GetToken()
+      .pipe(
+        map((jwt: string) => ({
+          headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
+          params: params
+        })),
+        mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          this.http.post<T>(endpoint, body, options)
+        )
+      );
+  }
 
-      /**
-       * Put API wrapper
-       * @param endpoint The endpoint you want to call
-       * @param body The body for the post request
-       * @param params The params you want to pass in
-      */
-      public put<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
-        return this.authenticationService.GetToken()
-        .pipe(
-          map((jwt: string) => ({
-            headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
-            params: params
-          })),
-          mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
-            this.http.put<T>(endpoint, body, options)
-          )
-        );
-      }
+  /**
+   * Put API wrapper
+   * @param endpoint The endpoint you want to call
+   * @param body The body for the post request
+   * @param params The params you want to pass in
+  */
+  public put<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
+    return this.authenticationService.GetToken()
+      .pipe(
+        map((jwt: string) => ({
+          headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
+          params: params
+        })),
+        mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          this.http.put<T>(endpoint, body, options)
+        )
+      );
+  }
 
-     /**
-       * Patch API wrapper
-       * @param endpoint The endpoint you want to call
-       * @param body The body for the post request
-       * @param params The params you want to pass in
-      */
-     public patch<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
-      return this.authenticationService.GetToken()
+  /**
+    * Patch API wrapper
+    * @param endpoint The endpoint you want to call
+    * @param body The body for the post request
+    * @param params The params you want to pass in
+   */
+  public patch<T>(endpoint: string, body: any, params?: HttpParams): Observable<T> {
+    return this.authenticationService.GetToken()
       .pipe(
         map((jwt: string) => ({
           headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
@@ -87,23 +88,36 @@ export class HttpClientService {
           this.http.patch<T>(endpoint, body, options)
         )
       );
+  }
+
+  /**
+   * Delete API wrapper
+   * @param endpoint The endpoint you want to call
+   * @param params The params you want to pass in
+  */
+  public delete<T>(endpoint: string, params?: HttpParams): Observable<T> {
+    return this.authenticationService.GetToken()
+      .pipe(
+        map((jwt: string) => ({
+          headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
+          params: params
+        })),
+        mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
+          this.http.delete<T>(endpoint, options)
+        )
+      );
+  }
+
+  /**
+* Builds the HTTP Params up
+* @param params The params you want in your httpParams
+*/
+  public buildHttpParams(params: Dictionary[]): HttpParams {
+    let httpParams: HttpParams = new HttpParams();
+    for (let i: number = 0; i < params.length; i++) {
+      httpParams = httpParams.append(params[i].key, params[i].value);
     }
 
-      /**
-       * Delete API wrapper
-       * @param endpoint The endpoint you want to call
-       * @param params The params you want to pass in
-      */
-      public delete<T>(endpoint: string, params?: HttpParams): Observable<T> {
-        return this.authenticationService.GetToken()
-        .pipe(
-          map((jwt: string) => ({
-            headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
-            params: params
-          })),
-          mergeMap((options: { headers: HttpHeaders, params: HttpParams }) =>
-            this.http.delete<T>(endpoint, options)
-          )
-        );
-      }
+    return httpParams;
+  }
 }
