@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { APP_CONFIG } from '../../config/config.service';
-import { HttpClientService } from '../../http/http-client.service';
+import { APP_CONFIG } from '../../../shared/services/config/config.service';
+import { HttpClientService } from '../../../shared/services/http/http-client.service';
 import { Observable } from 'rxjs';
-import { LocationRequest } from '../../../models/location/location-request.model';
-import { LocationResponse } from '../../../models/location/location-response.model';
+import { LocationRequest } from '../models/location-request.model';
+import { LocationResponse } from '../models/location-response.model';
 
 @Injectable({
   providedIn: 'root'

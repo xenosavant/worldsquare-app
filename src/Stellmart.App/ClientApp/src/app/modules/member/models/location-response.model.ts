@@ -1,4 +1,4 @@
-import { GooglePlacesResponse } from '../google-places-response.model';
+import { GooglePlacesResponse } from './google-places-response.model';
 
 export interface LocationResponse {
     id: number;
