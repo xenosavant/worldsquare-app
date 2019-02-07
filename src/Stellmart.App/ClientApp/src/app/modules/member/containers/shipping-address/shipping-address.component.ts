@@ -10,7 +10,7 @@ export class ShippingAddressComponent implements OnInit {
 
   constructor(private store: Store<any>) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
 }

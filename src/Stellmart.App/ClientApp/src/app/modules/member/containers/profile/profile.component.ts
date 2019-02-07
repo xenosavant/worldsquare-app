@@ -10,7 +10,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private store: Store<any>) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
 }
