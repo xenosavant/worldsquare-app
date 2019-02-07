@@ -10,6 +10,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { MemberEffects } from './store/effects/member.effects';
 
 import * as fromComponents from './components';
+import { PassportComponent } from './containers/passport/passport.component';
+import { ProfileComponent } from './containers/profile/profile.component';
+import { ShippingAddressComponent } from './containers/shipping-address/shipping-address.component';
+import { SidebarComponent } from './containers/sidebar/sidebar.component';
 
 @NgModule({
     imports: [
@@ -20,7 +24,7 @@ import * as fromComponents from './components';
         StoreModule.forFeature('member', fromMember.reducer),
         EffectsModule.forFeature([MemberEffects])
     ],
-    declarations: [...fromComponents.components],
+    declarations: [...fromComponents.components, PassportComponent, ProfileComponent, ShippingAddressComponent, SidebarComponent],
     exports: [...fromComponents.components]
 })
 export class MemberModule { }
