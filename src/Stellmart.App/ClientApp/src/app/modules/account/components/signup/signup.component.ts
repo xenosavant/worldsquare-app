@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FormValidationService } from '../../../shared/services/form-validation/form-validation.service';
-import { AccountService } from '../../../shared/services/api/account/account.service';
-import { SignupResponse } from '../../../shared/models/account/signup-response.model';
-import { SignupRequest } from '../../../shared/models/account/signup-request.model';
-import { MatchOtherValidator } from '../../../shared/validators/match-other.validator';
-import { PasswordPatternValidator } from '../../../shared/validators/password-pattern.validator';
-import { SecurityQuestionsResponse } from '../../../shared/models/account/security-questions-response.model';
-import { AuthenticationService } from '../../../shared/services/authentication/authentication.service';
+import { FormValidationService } from '../../../../shared/services/form-validation/form-validation.service';
+import { AccountService } from '../../../../shared/services/api/account/account.service';
+import { SignupResponse } from '../../../../shared/models/account/signup-response.model';
+import { SignupRequest } from '../../../../shared/models/account/signup-request.model';
+import { MatchOtherValidator } from '../../../../shared/validators/match-other.validator';
+import { PasswordPatternValidator } from '../../../../shared/validators/password-pattern.validator';
+import { SecurityQuestionsResponse } from '../../../../shared/models/account/security-questions-response.model';
+import { AuthenticationService } from '../../../../shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-signup',

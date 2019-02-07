@@ -1,10 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormValidationService } from '../../shared/services/form-validation/form-validation.service';
-import { GooglePlacesResponse } from '../../shared/models/google-places-response.model';
-import { LocationResponse } from '../../shared/models/location/location-response.model';
-import { LocationService } from '../../shared/services/api/location/location.service';
-import { LocationRequest } from '../../shared/models/location/location-request.model';
+import { FormValidationService } from '../../../../shared/services/form-validation/form-validation.service';
+import { GooglePlacesResponse } from '../../../../shared/models/google-places-response.model';
+import { LocationResponse } from '../../../../shared/models/location/location-response.model';
+import { LocationService } from '../../../../shared/services/api/location/location.service';
+import { LocationRequest } from '../../../../shared/models/location/location-request.model';
 
 @Component({
   selector: 'app-shipping-address',

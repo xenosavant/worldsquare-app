@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../shared/services/authentication/authentication.service';
+import { AuthenticationService } from '../../../shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -9,12 +9,12 @@ import { AuthenticationService } from '../../shared/services/authentication/auth
 export class HomeComponent implements OnInit {
 
   constructor(
-      private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService
   ) { }
 
   public ngOnInit(): void {
     if (window.location.hash) {
-        this.authenticationService.AuthorizedCallback();
+      this.authenticationService.AuthorizedCallback();
     }
   }
 }
