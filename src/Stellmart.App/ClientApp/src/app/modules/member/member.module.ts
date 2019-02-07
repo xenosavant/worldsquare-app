@@ -4,6 +4,11 @@ import { MemberRoutingModule } from './member-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 
+import { StoreModule } from '@ngrx/store';
+import * as fromMember from './store/reducers/member.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { MemberEffects } from './store/effects/member.effects';
+
 import * as fromComponents from './components';
 
 @NgModule({
@@ -11,7 +16,9 @@ import * as fromComponents from './components';
         CommonModule,
         MemberRoutingModule,
         ReactiveFormsModule,
-        SharedModule
+        SharedModule,
+        StoreModule.forFeature('member', fromMember.reducer),
+        EffectsModule.forFeature([MemberEffects])
     ],
     declarations: [...fromComponents.components],
     exports: [...fromComponents.components]
