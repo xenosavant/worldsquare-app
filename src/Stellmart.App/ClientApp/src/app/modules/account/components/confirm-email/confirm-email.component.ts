@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/shared/services/api/account/account.service';
+import { AccountService } from 'src/app/modules/account/services/account.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ConfirmEmailRequest } from 'src/app/shared/models/account/confirm-email-request.model';
-import { ConfirmEmailResponse } from 'src/app/shared/models/account/confirm-email-response.model';
+import { ConfirmEmailRequest } from 'src/app/modules/account/models/confirm-email-request.model';
+import { ConfirmEmailResponse } from 'src/app/modules/account/models/confirm-email-response.model';
 
 @Component({
   selector: 'app-confirm-email',

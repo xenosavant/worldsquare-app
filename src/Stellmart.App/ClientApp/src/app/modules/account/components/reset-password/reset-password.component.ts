@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { AccountService } from 'src/app/shared/services/api/account/account.service';
+import { AccountService } from 'src/app/modules/account/services/account.service';
 import { FormValidationService } from 'src/app/shared/services/form-validation/form-validation.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatchOtherValidator } from 'src/app/shared/validators/match-other.validator';
-import { ResetPasswordRequest } from 'src/app/shared/models/account/reset-password-request.model';
-import { ResetPasswordResponse } from 'src/app/shared/models/account/reset-password-response.model';
-import { SecurityQuestionsResponse } from 'src/app/shared/models/account/security-questions-response.model';
+import { ResetPasswordRequest } from 'src/app/modules/account/models/reset-password-request.model';
+import { ResetPasswordResponse } from 'src/app/modules/account/models/reset-password-response.model';
+import { SecurityQuestionsResponse } from 'src/app/modules/account/models/security-questions-response.model';
 import { Dictionary } from 'src/app/shared/models/dictionary.model';
 
 @Component({
