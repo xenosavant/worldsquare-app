@@ -8,10 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AccountEffects } from './store/effects/account.effects';
 
 import * as fromComponents from './components';
-import { ConfirmEmailComponent } from './containers/confirm-email/confirm-email.component';
-import { ForgotPasswordComponent } from './containers/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './containers/reset-password/reset-password.component';
-import { SignupComponent } from './containers/signup/signup.component';
+import * as fromContainers from './containers';
 
 @NgModule({
   imports: [
@@ -20,7 +17,7 @@ import { SignupComponent } from './containers/signup/signup.component';
     StoreModule.forFeature('account', fromAccount.reducer),
     EffectsModule.forFeature([AccountEffects])
   ],
-  declarations: [...fromComponents.components, ConfirmEmailComponent, ForgotPasswordComponent, ResetPasswordComponent, SignupComponent],
-  exports: [...fromComponents.components]
+  declarations: [...fromComponents.components, ...fromContainers.containers],
+  exports: [...fromComponents.components, ...fromContainers.containers]
 })
 export class AccountModule { }
