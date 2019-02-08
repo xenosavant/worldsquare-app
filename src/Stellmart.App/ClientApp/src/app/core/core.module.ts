@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import * as fromComponents from './components';
+import { AccountBarComponent } from './containers/account-bar/account-bar.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import * as fromComponents from './components';
     HttpClientModule,
     SharedModule
   ],
-  declarations: [...fromComponents.components],
+  declarations: [...fromComponents.components, AccountBarComponent],
   exports: [RouterModule, fromComponents.HeaderComponent, fromComponents.FooterComponent]
 })
 export class CoreModule { }
