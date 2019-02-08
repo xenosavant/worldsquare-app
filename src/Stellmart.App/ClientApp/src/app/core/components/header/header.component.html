@@ -1,188 +1,280 @@
 <div class="h3-bg">
-    <div class="wrappage v2">
-        <header id="header" class="header-v3 bg-w">
-            <div class="topbar">
-                <div class="container container-240">
-                    <div class="row flex">
-                        <div class="col-md-6 col-sm-6 col-xs-4 flex-left">
-                            <div class="topbar-left">
-                                <div class="element element-store hidden-xs hidden-sm">
-                                    <a id="label1" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <img src="assets/img/icon-map.png" alt="">
-                                        <span>Store Location</span>
-
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="label1">
-                                        <li><a href="#">New York</a></li>
-                                        <li><a href="#">California</a></li>
-                                        <li><a href="#">Los Angeles</a></li>
-                                    </ul>
-                                </div>
-                                <div class="element hidden-xs hidden-sm">
-                                    <a href="#"><img src="assets/img/icon-track.png" alt=""><span>Track Your Order</span></a>
-                                </div>
-                                <div class="element element-account hidden-md hidden-lg">
-                                    <a href="#">My Account</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-8 flex-right">
-                            <div class="topbar-right">
-                                <div class="element hidden-xs hidden-sm">
-                                    <a href="#">Buyer Protection </a>
-                                </div>
-                                <div class="element hidden-xs hidden-sm">
-                                    <a href="#">Help</a>
-                                </div>
-
-                                <div class="element element-leaguage">
-                                    <a id="label2" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <img src="assets/img/icon-l.png" alt="">
-                                        <span>English</span>
-                                        <span class="ion-ios-arrow-down f-10 e-arrow"></span>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="label2">
-                                        <li><a href="#">EN</a></li>
-                                        <li><a href="#">DE</a></li>
-                                        <li><a href="#">FR</a></li>
-                                    </ul>
-                                </div>
-                                <div class="element element-currency">
-                                    <a id="label3" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                        aria-haspopup="true" aria-expanded="false">
-
-                                        <span>USD</span>
-                                        <span class="ion-ios-arrow-down f-10 e-arrow"></span>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="label3">
-                                        <li><a href="#">USD</a></li>
-                                        <li><a href="#">AUD</a></li>
-                                        <li><a href="#">EUR</a></li>
-                                    </ul>
-                                </div>
-                                <div *ngIf="!isAuthorized()" class="element hidden-xs hidden-sm">
-                                    <a href="#" (click)="login()">Sign in</a>
-                                </div>
-                                <div *ngIf="!isAuthorized()" class="element hidden-xs hidden-sm">
-                                    <a href="#" [routerLink]="['/signup']">Sign up</a>
-                                </div>
-                                <div *ngIf="!isAuthorized()" class="element hidden-xs hidden-sm">
-                                        <a href="#" [routerLink]="['/forgot-password']">Forgot Password</a>
-                                    </div>
-                                <div *ngIf="isAuthorized()" class="element hidden-xs hidden-sm">
-                                    <a href="#" [routerLink]="['/member/profile']">Profile</a>
-                                </div>
-                                <div *ngIf="isAuthorized()" class="element hidden-xs hidden-sm">
-                                    <a href="#" (click)="logout()">Log out</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <div class="wrappage v2">
+    <header id="header" class="header-v3 bg-w">
+      <div class="topbar">
+        <div class="container container-240">
+          <div class="row flex">
+            <div class="col-md-6 col-sm-6 col-xs-4 flex-left">
+              <div class="topbar-left">
+                <div class="element element-store hidden-xs hidden-sm">
+                  <a
+                    id="label1"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <img src="assets/img/icon-map.png" alt="" />
+                    <span>Store Location</span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="label1">
+                    <li><a href="#">New York</a></li>
+                    <li><a href="#">California</a></li>
+                    <li><a href="#">Los Angeles</a></li>
+                  </ul>
                 </div>
-            </div>
-            <div class="header-center">
-                <div class="container container-240">
-                    <div class="row flex">
-                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 v-center header-logo">
-                            <a href="#"><img src="assets/img/logo.png" alt="" class="img-reponsive"></a>
-                        </div>
-                        <div class="col-lg-7 col-md-7 v-center header-search hidden-xs hidden-sm">
-                            <div class="searchform ajax-search form-wrapper">
-                                <input type="text" onblur="if (this.value=='') this.value = this.defaultValue" onfocus="if (this.value==this.defaultValue) this.value = ''" placeholder="i’m shoping for...">
-                                <div class="search-panel">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href='#'>All categories <span
-                                            class="fa fa-caret-down"></span></a>
-                                    <ul id="category" class="dropdown-menu dropdown-category">
-                                        <li><a href="#">TV & Video</a></li>
-                                        <li><a href="#">Home Audio & Theater</a></li>
-                                        <li><a href="#">Camera, Photo & Video</a></li>
-                                        <li><a href="#">Cell Phones & Accessories</a></li>
-                                        <li><a href="#">Headphones</a></li>
-                                        <li><a href="#">Car Electronics</a></li>
-                                        <li><a href="#">Electronics Showcase</a></li>
-                                    </ul>
-                                </div>
-                                <a href="../shop_full.html"><span class="input-group-btn"><button class="button_search"
-                                            type="button"><i class="ion-ios-search-strong"></i></button></span></a>
-                            </div>
-                            <div class="tags">
-                                <span>Most searched :</span>
-                                <a href="./shop_full.html">umbrella</a>
-                                <a href="./shop_full.html">hair accessories </a>
-                                <a href="./shop_full.html">diamond</a>
-                                <a href="./shop_full.html"> painting slime</a>
-                                <a href="./shop_full.html">sunglasses</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3  col-md-3 col-sm-6 col-xs-6 v-center header-sub">
-                            <div class="right-panel">
-                                <div class="header-sub-element row">
-                                    <a class="hidden-xs hidden-sm" href=""><img src="assets/img/wallet.png" alt=""> 5000 WST</a>
-                                    <a class="hidden-xs hidden-sm" href="./userprofile/newsfeed.html"><img src="assets/img/icon-user.png"
-                                            alt=""></a>
-                                    <a href="./wishlist.html"><img src="assets/img/icon-heart.png" alt=""></a>
-                                    <div class="cart">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                            aria-haspopup="true" aria-expanded="false" id="label5">
-                                            <img src="assets/img/icon-cart.png" alt="">
-                                            <span class="count cart-count">0</span>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-cart">
-                                            <ul class="mini-products-list">
-                                                <li class="item-cart">
-                                                    <div class="product-img-wrap">
-                                                        <a href="#"><img src="assets/img/cart1.jpg" alt="" class="img-reponsive"></a>
-                                                    </div>
-                                                    <div class="product-details">
-                                                        <div class="inner-left">
-                                                            <div class="product-name"><a href="./productdetails.html">Harman
-                                                                    Kardon Onyx Studio </a></div>
-                                                            <div class="product-price">
-                                                                $ 60.00 <span>( x2)</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <a href="#" class="e-del"><i class="ion-ios-close-empty"></i></a>
-                                                </li>
-                                                <li class="item-cart">
-                                                    <div class="product-img-wrap">
-                                                        <a href="#"><img src="assets/img/cart1.jpg" alt="" class="img-reponsive"></a>
-                                                    </div>
-                                                    <div class="product-details">
-                                                        <div class="inner-left">
-                                                            <div class="product-name"><a href="./productdetails.html">Harman
-                                                                    Kardon Onyx Studio </a></div>
-                                                            <div class="product-price">
-                                                                $ 60.00 <span>( x2)</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <a href="#" class="e-del"><i class="ion-ios-close-empty"></i></a>
-                                                </li>
-                                            </ul>
-                                            <div class="bottom-cart">
-                                                <div class="cart-price">
-                                                    <span>Subtotal</span>
-                                                    <span class="price-total">$ 120.00</span>
-                                                </div>
-                                                <div class="button-cart">
-                                                    <a href="./cart.html" class="cart-btn btn-viewcart">View Cart</a>
-                                                    <a href="./checkout.html" class="cart-btn e-checkout btn-gradient">Checkout</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="#" class="hidden-md hidden-lg icon-pushmenu js-push-menu">
-                                        <!-- <i class="fa fa-bars f-15"></i> -->
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="element hidden-xs hidden-sm">
+                  <a href="#"
+                    ><img src="assets/img/icon-track.png" alt="" /><span
+                      >Track Your Order</span
+                    ></a
+                  >
                 </div>
+                <div class="element element-account hidden-md hidden-lg">
+                  <a href="#">My Account</a>
+                </div>
+              </div>
             </div>
-        </header>
-    </div>
+            <div class="col-md-6 col-sm-6 col-xs-8 flex-right">
+              <div class="topbar-right">
+                <div class="element hidden-xs hidden-sm">
+                  <a href="#">Buyer Protection </a>
+                </div>
+                <div class="element hidden-xs hidden-sm">
+                  <a href="#">Help</a>
+                </div>
+
+                <div class="element element-leaguage">
+                  <a
+                    id="label2"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <img src="assets/img/icon-l.png" alt="" />
+                    <span>English</span>
+                    <span class="ion-ios-arrow-down f-10 e-arrow"></span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="label2">
+                    <li><a href="#">EN</a></li>
+                    <li><a href="#">DE</a></li>
+                    <li><a href="#">FR</a></li>
+                  </ul>
+                </div>
+                <div class="element element-currency">
+                  <a
+                    id="label3"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span>USD</span>
+                    <span class="ion-ios-arrow-down f-10 e-arrow"></span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="label3">
+                    <li><a href="#">USD</a></li>
+                    <li><a href="#">AUD</a></li>
+                    <li><a href="#">EUR</a></li>
+                  </ul>
+                </div>
+                <div
+                  *ngIf="!isAuthorized()"
+                  class="element hidden-xs hidden-sm"
+                >
+                  <a href="#" (click)="login()">Sign in</a>
+                </div>
+                <div
+                  *ngIf="!isAuthorized()"
+                  class="element hidden-xs hidden-sm"
+                >
+                  <a href="#" [routerLink]="['/account/signup']">Sign up</a>
+                </div>
+                <div
+                  *ngIf="!isAuthorized()"
+                  class="element hidden-xs hidden-sm"
+                >
+                  <a href="#" [routerLink]="['/account/forgot-password']"
+                    >Forgot Password</a
+                  >
+                </div>
+                <div *ngIf="isAuthorized()" class="element hidden-xs hidden-sm">
+                  <a href="#" [routerLink]="['/member/profile']">Profile</a>
+                </div>
+                <div *ngIf="isAuthorized()" class="element hidden-xs hidden-sm">
+                  <a href="#" (click)="logout()">Log out</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-center">
+        <div class="container container-240">
+          <div class="row flex">
+            <div
+              class="col-lg-2 col-md-2 col-sm-6 col-xs-6 v-center header-logo"
+            >
+              <a href="#"
+                ><img src="assets/img/logo.png" alt="" class="img-reponsive"
+              /></a>
+            </div>
+            <div
+              class="col-lg-7 col-md-7 v-center header-search hidden-xs hidden-sm"
+            >
+              <div class="searchform ajax-search form-wrapper">
+                <input
+                  type="text"
+                  onblur="if (this.value=='') this.value = this.defaultValue"
+                  onfocus="if (this.value==this.defaultValue) this.value = ''"
+                  placeholder="i’m shoping for..."
+                />
+                <div class="search-panel">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"
+                    >All categories <span class="fa fa-caret-down"></span
+                  ></a>
+                  <ul id="category" class="dropdown-menu dropdown-category">
+                    <li><a href="#">TV & Video</a></li>
+                    <li><a href="#">Home Audio & Theater</a></li>
+                    <li><a href="#">Camera, Photo & Video</a></li>
+                    <li><a href="#">Cell Phones & Accessories</a></li>
+                    <li><a href="#">Headphones</a></li>
+                    <li><a href="#">Car Electronics</a></li>
+                    <li><a href="#">Electronics Showcase</a></li>
+                  </ul>
+                </div>
+                <a href="../shop_full.html"
+                  ><span class="input-group-btn"
+                    ><button class="button_search" type="button">
+                      <i class="ion-ios-search-strong"></i></button></span
+                ></a>
+              </div>
+              <div class="tags">
+                <span>Most searched :</span>
+                <a href="./shop_full.html">umbrella</a>
+                <a href="./shop_full.html">hair accessories </a>
+                <a href="./shop_full.html">diamond</a>
+                <a href="./shop_full.html"> painting slime</a>
+                <a href="./shop_full.html">sunglasses</a>
+              </div>
+            </div>
+            <div
+              class="col-lg-3  col-md-3 col-sm-6 col-xs-6 v-center header-sub"
+            >
+              <div class="right-panel">
+                <div class="header-sub-element row">
+                  <a class="hidden-xs hidden-sm" href=""
+                    ><img src="assets/img/wallet.png" alt="" /> 5000 WST</a
+                  >
+                  <a
+                    class="hidden-xs hidden-sm"
+                    href="./userprofile/newsfeed.html"
+                    ><img src="assets/img/icon-user.png" alt=""
+                  /></a>
+
+                  <a href="./wishlist.html"
+                    ><img src="assets/img/icon-heart.png" alt=""
+                  /></a>
+                  <div class="cart">
+                    <a
+                      href="#"
+                      class="dropdown-toggle"
+                      data-toggle="dropdown"
+                      role="button"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      id="label5"
+                    >
+                      <img src="assets/img/icon-cart.png" alt="" />
+                      <span class="count cart-count">0</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-cart">
+                      <ul class="mini-products-list">
+                        <li class="item-cart">
+                          <div class="product-img-wrap">
+                            <a href="#"
+                              ><img
+                                src="assets/img/cart1.jpg"
+                                alt=""
+                                class="img-reponsive"
+                            /></a>
+                          </div>
+                          <div class="product-details">
+                            <div class="inner-left">
+                              <div class="product-name">
+                                <a href="./productdetails.html"
+                                  >Harman Kardon Onyx Studio
+                                </a>
+                              </div>
+                              <div class="product-price">
+                                $ 60.00 <span>( x2)</span>
+                              </div>
+                            </div>
+                          </div>
+                          <a href="#" class="e-del"
+                            ><i class="ion-ios-close-empty"></i
+                          ></a>
+                        </li>
+                        <li class="item-cart">
+                          <div class="product-img-wrap">
+                            <a href="#"
+                              ><img
+                                src="assets/img/cart1.jpg"
+                                alt=""
+                                class="img-reponsive"
+                            /></a>
+                          </div>
+                          <div class="product-details">
+                            <div class="inner-left">
+                              <div class="product-name">
+                                <a href="./productdetails.html"
+                                  >Harman Kardon Onyx Studio
+                                </a>
+                              </div>
+                              <div class="product-price">
+                                $ 60.00 <span>( x2)</span>
+                              </div>
+                            </div>
+                          </div>
+                          <a href="#" class="e-del"
+                            ><i class="ion-ios-close-empty"></i
+                          ></a>
+                        </li>
+                      </ul>
+                      <div class="bottom-cart">
+                        <div class="cart-price">
+                          <span>Subtotal</span>
+                          <span class="price-total">$ 120.00</span>
+                        </div>
+                        <div class="button-cart">
+                          <a href="./cart.html" class="cart-btn btn-viewcart"
+                            >View Cart</a
+                          >
+                          <a
+                            href="./checkout.html"
+                            class="cart-btn e-checkout btn-gradient"
+                            >Checkout</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href="#"
+                    class="hidden-md hidden-lg icon-pushmenu js-push-menu"
+                  >
+                    <!-- <i class="fa fa-bars f-15"></i> -->
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
 </div>
