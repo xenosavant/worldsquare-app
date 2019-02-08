@@ -9,6 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import * as fromComponents from './components';
 import * as fromContainers from './containers';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import * as fromCore from './store/reducers/core.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CoreEffects } from './store/effects/core.effects';
 
 @NgModule({
   imports: [
@@ -17,7 +21,9 @@ import { RouterModule } from '@angular/router';
     AngularFontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('core', fromCore.reducer),
+    EffectsModule.forFeature([CoreEffects])
   ],
   declarations: [...fromComponents.components, ...fromContainers.containers],
   exports: [
