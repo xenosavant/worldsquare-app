@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '../../../node_modules/@angular/router';
 import { CoreRoutingModule } from './core-routing.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,7 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import * as fromComponents from './components';
-import { AccountBarComponent } from './containers/account-bar/account-bar.component';
+import * as fromContainers from './containers';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -19,7 +19,11 @@ import { AccountBarComponent } from './containers/account-bar/account-bar.compon
     HttpClientModule,
     SharedModule
   ],
-  declarations: [...fromComponents.components, AccountBarComponent],
-  exports: [RouterModule, fromComponents.HeaderComponent, fromComponents.FooterComponent]
+  declarations: [...fromComponents.components, ...fromContainers.containers],
+  exports: [
+    RouterModule,
+    ...fromComponents.components,
+    ...fromContainers.containers
+  ]
 })
-export class CoreModule { }
+export class CoreModule {}

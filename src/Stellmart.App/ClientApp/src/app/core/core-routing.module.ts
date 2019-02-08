@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: '../modules/member/member.module#MemberModule'
   },
   {
+    path: 'account',
+    loadChildren: '../modules/account/account.module#AccountModule'
+  },
+  {
     path: '**',
     component: fromComponents.NotFoundComponent
   }
@@ -25,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class CoreRoutingModule { }
+export class CoreRoutingModule {}
