@@ -13,15 +13,15 @@ import * as fromComponents from './components';
 import * as fromContainers from './containers';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MemberRoutingModule,
-        ReactiveFormsModule,
-        SharedModule,
-        StoreModule.forFeature('member', fromMember.reducer),
-        EffectsModule.forFeature([MemberEffects])
-    ],
-    declarations: [...fromComponents.components, ...fromContainers.containers],
-    exports: [...fromComponents.components, ...fromContainers.containers]
+  imports: [
+    CommonModule,
+    MemberRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
+    StoreModule.forFeature('member', fromMember.reducer),
+    EffectsModule.forFeature([MemberEffects])
+  ],
+  declarations: [...fromComponents.components, ...fromContainers.containers],
+  exports: [...fromComponents.components, ...fromContainers.containers]
 })
-export class MemberModule { }
+export class MemberModule {}
