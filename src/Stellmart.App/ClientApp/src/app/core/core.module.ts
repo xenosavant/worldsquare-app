@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '../../../node_modules/@angular/router';
 import { CoreRoutingModule } from './core-routing.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
-
-import { SignupComponent } from './account/signup/signup.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ForgotPasswordComponent } from './account/forgot-password/forgot-password.component';
-import { ResetpasswordComponent } from './account/reset-password/reset-password.component';
-import { ConfirmEmailComponent } from './account/confirm-email/confirm-email.component';
+
+import * as fromComponents from './components';
+import * as fromContainers from './containers';
+import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import * as fromCore from './store/reducers/core.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { CoreEffects } from './store/effects/core.effects';
 
 @NgModule({
   imports: [
@@ -23,18 +21,15 @@ import { ConfirmEmailComponent } from './account/confirm-email/confirm-email.com
     AngularFontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('core', fromCore.reducer),
+    EffectsModule.forFeature([CoreEffects])
   ],
-  declarations: [
-    SignupComponent,
-    FooterComponent,
-    HeaderComponent,
-    NotFoundComponent,
-    HomeComponent,
-    ForgotPasswordComponent,
-    ResetpasswordComponent,
-    ConfirmEmailComponent
-  ],
-  exports: [RouterModule, HeaderComponent, FooterComponent]
+  declarations: [...fromComponents.components, ...fromContainers.containers],
+  exports: [
+    RouterModule,
+    ...fromComponents.components,
+    ...fromContainers.containers
+  ]
 })
-export class CoreModule { }
+export class CoreModule {}
