@@ -10,9 +10,9 @@ import * as fromComponents from './components';
 import * as fromContainers from './containers';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import * as fromCore from './store/reducers/core.reducer';
+import { reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
-import { CoreEffects } from './store/effects/core.effects';
+import { CoreEffects } from './store/effects/account-bar.effects';
 
 @NgModule({
   imports: [
@@ -22,7 +22,7 @@ import { CoreEffects } from './store/effects/core.effects';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    StoreModule.forFeature('core', fromCore.reducer),
+    StoreModule.forFeature('core', reducers),
     EffectsModule.forFeature([CoreEffects])
   ],
   declarations: [...fromComponents.components, ...fromContainers.containers],
