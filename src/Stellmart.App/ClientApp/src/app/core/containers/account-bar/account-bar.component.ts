@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { AccountBarFacade } from '../../store/facades/account-bar.facade';
 
 @Component({
   selector: 'app-account-bar',
@@ -6,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-bar.component.css']
 })
 export class AccountBarComponent implements OnInit {
-  constructor() {}
+  private balance: Observable<string>;
 
-  public ngOnInit(): void {}
+  constructor(private facade: AccountBarFacade) {}
+
+  public ngOnInit(): void {
+    this.balance = this.facade.balance;
+  }
 }
