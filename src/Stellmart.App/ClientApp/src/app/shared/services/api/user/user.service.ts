@@ -3,7 +3,7 @@ import { UserResponse } from '../../../models/user/user-response.model';
 import { Observable } from 'rxjs';
 import { APP_CONFIG } from '../../config/config.service';
 import { HttpClientService } from '../../http/http-client.service';
-import { UserBalanceResponse } from '../../../models/user/user-balance-response.model';
+import { UserBalanceResponse } from '../../../../core/models/user-balance-response.model';
 
 @Injectable({
   providedIn: 'root'
