@@ -9,23 +9,26 @@ import { LocationResponse } from '../models/location-response.model';
   providedIn: 'root'
 })
 export class LocationService {
-
   private baseUrl: string = APP_CONFIG.AppSettings.ApiUrl;
 
-  constructor(
-    private httpService: HttpClientService
-  ) { }
+  constructor(private httpService: HttpClientService) {}
 
   public save(request: LocationRequest): Observable<LocationResponse> {
     return this.httpService.post(this.baseUrl + '/api/location', request);
   }
 
   public setDefault(request: LocationRequest): Observable<LocationResponse> {
-    return this.httpService.patch(this.baseUrl + '/api/location/setDefault', request);
+    return this.httpService.patch(
+      this.baseUrl + '/api/location/setDefault',
+      request
+    );
   }
 
   public delete(request: LocationRequest): Observable<LocationResponse> {
-    return this.httpService.patch(this.baseUrl + '/api/location/delete', request);
+    return this.httpService.patch(
+      this.baseUrl + '/api/location/delete',
+      request
+    );
   }
 
   public getShippingAddresses(): Observable<LocationResponse[]> {
