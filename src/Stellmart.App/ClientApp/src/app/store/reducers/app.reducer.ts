@@ -32,8 +32,7 @@ export function reducer(
     case AppActionTypes.LoadConfigSuccess: {
       return {
         ...state,
-        appConfig: action.payload,
-        kurec: true
+        appConfig: action.payload
       };
     }
   }
