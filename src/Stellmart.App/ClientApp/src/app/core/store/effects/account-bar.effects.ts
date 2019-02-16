@@ -8,7 +8,7 @@ import { UserBalanceResponse } from '../../models/user-balance-response.model';
 import { of } from 'rxjs';
 
 @Injectable()
-export class CoreEffects {
+export class AccountBarEffects {
   constructor(
     private actions$: Actions,
     private accountBarService: AccountBarService

@@ -12,7 +12,9 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
-import { CoreEffects } from './store/effects/account-bar.effects';
+import { AccountBarEffects } from './store/effects/account-bar.effects';
+import { AuthConfigurationService } from '../shared/services/config/auth-config.service';
+import { ConfigService } from '../shared/services/config/config.service';
 
 @NgModule({
   imports: [
@@ -22,8 +24,8 @@ import { CoreEffects } from './store/effects/account-bar.effects';
     ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
-    StoreModule.forFeature('core', reducers),
-    EffectsModule.forFeature([CoreEffects])
+    StoreModule.forFeature('core', reducers)
+    //EffectsModule.forFeature([AccountBarEffects])
   ],
   declarations: [...fromComponents.components, ...fromContainers.containers],
   exports: [
