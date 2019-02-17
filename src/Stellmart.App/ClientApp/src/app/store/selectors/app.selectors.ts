@@ -6,14 +6,12 @@ import {
 import { AppState, APP_KEY } from '../reducers/app.reducer';
 import { AppConfig } from '../../app.config';
 
-// Lookup the 'account bar' feature state managed by NgRx
-const getAccountBarState: MemoizedSelector<
-  object,
+const getAppState: MemoizedSelector<object, AppState> = createFeatureSelector<
   AppState
-> = createFeatureSelector<AppState>(APP_KEY);
+>(APP_KEY);
 
 const getConfig: MemoizedSelector<object, AppConfig> = createSelector(
-  getAccountBarState,
+  getAppState,
   (state: AppState) => state.appConfig
 );
 
