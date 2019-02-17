@@ -1,7 +1,7 @@
 import { AppActions, AppActionTypes } from '../actions/app.actions';
 import { AppConfig } from '../../app.config';
 
-export const APP_KEY: string = 'app_key';
+export const APP_KEY: string = 'app';
 
 export interface AppState {
   appConfig: AppConfig | undefined;
