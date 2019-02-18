@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { APP_CONFIG } from './config.service';
 import { AppFacade } from '../../../store/facades/app,facade';
 import { AppConfig } from '../../../app.config';
 

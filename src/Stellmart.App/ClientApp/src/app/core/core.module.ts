@@ -13,8 +13,6 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountBarEffects } from './store/effects/account-bar.effects';
-import { AuthConfigurationService } from '../shared/services/config/auth-config.service';
-import { ConfigService } from '../shared/services/config/config.service';
 
 @NgModule({
   imports: [
