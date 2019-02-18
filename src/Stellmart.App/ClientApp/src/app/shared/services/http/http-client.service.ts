@@ -24,10 +24,6 @@ export class HttpClientService {
    */
   public get<T>(endpoint: string, params?: HttpParams): Observable<T> {
     return this.facade.getConfig.pipe(
-      // mergeMap((config: AppConfig) => forkJoin(
-      //   of(config),
-      //   this.authenticationService.GetToken()
-      // ))
       withLatestFrom(this.authenticationService.GetToken()),
       map(([config, jwt]: [AppConfig, string]) => ({
         headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
@@ -41,36 +37,6 @@ export class HttpClientService {
       )
     );
   }
-
-  // public Test(): Observable<T> {
-  //   const h1: Observable<string> = of('Dzemper');
-  //   const h2: Observable<string> = of('Pulovr');
-  //   const h3: Observable<string> = of('Kardigan');
-
-  //   return h1.pipe(
-  //     map((dzoni: string) => ({
-  //       headers: new HttpHeaders().set('Authorization', `Bearer ${dzoni}`)
-  //     })),
-  //     mergeMap((options: { headers: HttpHeaders}) =>
-  //       h3
-  //     )
-  //   );
-  // }
-
-  // public Test2(): Observable<string> {
-  //   const h1: Observable<string> = of('Dzemper');
-  //   const h2: Observable<string> = of('Pulovr');
-  //   const h3: Observable<string> = of('Kardigan');
-
-  //   return h1.pipe(
-  //     map((dzoni: string) => {
-  //       return new HttpHeaders().set('Authorization', `Bearer ${dzoni}`);
-  //     }),
-  //     mergeMap((headers: HttpHeaders) =>
-  //       h3
-  //     )
-  //   );
-  // }
 
   /**
    * Post API wrapper
