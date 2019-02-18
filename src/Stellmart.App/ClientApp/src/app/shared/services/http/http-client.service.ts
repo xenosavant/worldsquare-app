@@ -4,8 +4,8 @@ import { map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Dictionary } from '../../models/dictionary.model';
-import { AppFacade } from 'src/app/store/facades/app,facade';
-import { AppConfig } from 'src/app/app.config';
+import { AppFacade } from '../../../store/facades/app,facade';
+import { AppConfig } from '../../../app.config';
 
 @Injectable({
   providedIn: 'root'
